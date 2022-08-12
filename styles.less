@@ -6,6 +6,14 @@
     }
 }
 
+.container {
+    max-width: 1450px !important;
+}
+
+.row {
+    width: 100%;
+}
+
 .bo-logo {
     height: 145px;
     width: 270px;
@@ -45,11 +53,42 @@ tr {
     flex-direction: row;
     justify-content: space-between;
     position: relative;
+    margin: 10px 0;
 
     .bottom {
         font-weight: 700;
         text-align: right;
         position: absolute;
         right: 15%;
+    }
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+.payments {
+    &__box {
+        border: 2px solid grey;
+        background: #d8dee8;
+        padding: 10px 30px;
+    }
+
+    &__box-custom {
+        border: 2px solid grey;
+        background: #d8dee8;
+        padding: 10px 20px;
+
+        .currency {
+            margin-left: 20px;
+        }
+    }
+}
+
+.monthly {
+    &__box {
+        border: 2px solid grey;
+        background: #e8d8d8;
+        padding: 10px 30px;
     }
 }
