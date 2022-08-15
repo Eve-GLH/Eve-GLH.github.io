@@ -15,6 +15,7 @@
         <div class="container">
             <div class="header">
                 <h1>BCN Invoice Creator</h1>
+                <a href="" type="button" class="button">Back to Customer</a>
             </div>
         </div>
     </div>
@@ -139,6 +140,15 @@
                     </div>
                 </div>
                 <div class="col-sm-7">
+                    <div class="settings">
+                        <label for="date">Date:</label>
+                        <input type="date" id="date" name="invoice-date" value="2022-08-15" min="2022-01-01" max="2024-12-31">
+                        <label for="paid">Has the customer paid?</label>
+                        <select id="paid" name="paid">
+                            <option value="has-paid">Has Been Paid</option>
+                            <option value="not-paid">Has Not Been Paid</option>
+                        </select>
+                    </div>
                     <div class="main-content__right">
                         <div class="invoice__header">
                             <div class="bo-logo"></div>
