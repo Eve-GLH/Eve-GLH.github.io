@@ -234,5 +234,30 @@
         </div>
     </div>
     </div>
+    <!-- This is the most of javascript that connects everything together. Its at bottom of page because I wrapped whole page into app. 
+        You can wrap only part that you need to. Best practice is to keep this at the end after template.-->
+<script>
+    // This line simply defines the module we want from Vue. Vue is available because it was included at top of page.
+    // This code is saying get createApp function from Vue and make it available to us for below code.
+    const { createApp } = Vue
+    // This line creates an instance of Vue app by using the function createApp. I am storing it in a variable but that is only needed for debugging.
+    // We pass in an object {} to createApp. This object simply defines what app contains specially data function.
+    var eveapp1 = createApp({
+        //Data function is where we define what data we want to use in our app
+        data() {
+            //This return is simply saying that if someone asks for data then return this as default. Or you can say start with this data.
+            return {
+                //This pageName variable is the one you use in template to show this string. You can use it many times or just once.
+                pageName: 'Invoice',
+                //I have created variables of different types so you can see how they are declared in javascript. but I think you already know a lot around this point. 
+                accoutNumber: 290,
+                isActive: false,
+                todaysDate:new Date(),
+            }
+        }
+  }
+  // This is the end of object and then next line simply mount it to a div with ID eveapp.
+  ).mount('#eveapp')
+</script>
 </body>
 </html>
