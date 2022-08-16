@@ -154,7 +154,9 @@
                 <div class="col-sm-7">
                     <div class="settings">
                         <label for="date">Date:</label>
-                        <input type="date" id="date" name="invoice-date" value="2022-08-15" min="2022-01-01" max="2024-12-31">
+                        <!--Changed your date field to remove hard coded value and instead put in todays date. 
+                            You can also bind min and max based on todays date for example 1 year before and after -->
+                        <input type="date" id="date" v-model="todaysDate" name="invoice-date" min="2022-01-01" max="2024-12-31">
                         <label for="paid">Has the customer paid?</label>
                         <select id="paid" name="paid">
                             <option value="has-paid">Has Been Paid</option>
@@ -179,6 +181,8 @@
                                 </div>
                                 <b>VAT Number</b></br>
                                 <p>GB 170392907</p>
+                                <!--As an example I have shown the date here. Whenever you change the date this will update because its actually data bind-->
+                                <p>{{todaysDate}}</p>
                             </div>
                         </div>
                         <div class="invoice__number">
@@ -254,7 +258,8 @@
                 //I have created variables of different types so you can see how they are declared in javascript. but I think you already know a lot around this point. 
                 accoutNumber: 290,
                 isActive: false,
-                todaysDate:new Date(),
+                // I have used this date to get its string format and only take first 10 characters so date part is only needed. https://stackoverflow.com/a/50721014/923695
+                todaysDate:new Date().toISOString().slice(0,10),
             }
         }
   }
