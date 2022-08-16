@@ -24,7 +24,8 @@
     <div class="header__wrapper">
         <div class="container">
             <div class="header">
-                <h1>BCN Invoice Creator</h1>
+                <!-- The curly brackets {{ variable }} define the variable in template. This is string so it will just get populated in h1-->
+                <h1>BCN {{pageName}} Creator</h1>
                 <a href="" type="button" class="button">Back to Customer</a>
             </div>
         </div>
@@ -34,7 +35,8 @@
             <div class="row">
                 <div class="col-sm-5">
                     <div class="main-content__left">
-                        <h2>Payments</h2>
+                        <!-- I have given an example of a number here and within {{}} I am also adding 1 to it so you can see the number +1 result is shown on page -->
+                        <h2>Payments for {{accoutNumber+1}}</h2>
                         <div class="row">
                             <div class="col-sm-6">
                                 <h3>One-Off Payments</h3>
