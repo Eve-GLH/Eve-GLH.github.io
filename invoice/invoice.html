@@ -8,13 +8,24 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/less" ></script>
     <link rel="stylesheet" href="./styles.less" crossorigin="anonymous">
+    <!-- https://vuejs.org/guide/quick-start.html#without-build-tools  using the basic example I have included the script for vue on page.active
+    This script does nothing but includes vue on page and make it ready to use. This is similar to npm.less you have included above.active
+    You can include this from jsdelivr as well. I just used the one in tutorial.
+    -->
+    <script src="https://unpkg.com/vue@3"></script>
     <title>Invoice</title>
 </head>
 <body>
+    <!--Started an app but wrapped everything inside it. This is starting point 
+        and everything inside this html element is now considered as a template for this app.active
+        You can call this app anything however when you start vue you need to attach it to this app by ID
+        This attachment is done at the very bottom of the page. I have explained there how it is. -->
+    <div id="eveapp">
     <div class="header__wrapper">
         <div class="container">
             <div class="header">
-                <h1>BCN Invoice Creator</h1>
+                <!-- The curly brackets {{ variable }} define the variable in template. This is string so it will just get populated in h1-->
+                <h1>BCN {{pageName}} Creator</h1>
                 <a href="" type="button" class="button">Back to Customer</a>
             </div>
         </div>
@@ -24,7 +35,8 @@
             <div class="row">
                 <div class="col-sm-5">
                     <div class="main-content__left">
-                        <h2>Payments</h2>
+                        <!-- I have given an example of a number here and within {{}} I am also adding 1 to it so you can see the number +1 result is shown on page -->
+                        <h2>Payments for {{accoutNumber+1}}</h2>
                         <div class="row">
                             <div class="col-sm-6">
                                 <h3>One-Off Payments</h3>
@@ -142,7 +154,9 @@
                 <div class="col-sm-7">
                     <div class="settings">
                         <label for="date">Date:</label>
-                        <input type="date" id="date" name="invoice-date" value="2022-08-15" min="2022-01-01" max="2024-12-31">
+                        <!--Changed your date field to remove hard coded value and instead put in todays date. 
+                            You can also bind min and max based on todays date for example 1 year before and after -->
+                        <input type="date" id="date" v-model="todaysDate" name="invoice-date" min="2022-01-01" max="2024-12-31">
                         <label for="paid">Has the customer paid?</label>
                         <select id="paid" name="paid">
                             <option value="has-paid">Has Been Paid</option>
@@ -167,6 +181,8 @@
                                 </div>
                                 <b>VAT Number</b></br>
                                 <p>GB 170392907</p>
+                                <!--As an example I have shown the date here. Whenever you change the date this will update because its actually data bind-->
+                                <p>{{todaysDate}}</p>
                             </div>
                         </div>
                         <div class="invoice__number">
@@ -223,5 +239,32 @@
             </div>
         </div>
     </div>
+    </div>
+    <!-- This is the most of javascript that connects everything together. Its at bottom of page because I wrapped whole page into app. 
+        You can wrap only part that you need to. Best practice is to keep this at the end after template.-->
+<script>
+    // This line simply defines the module we want from Vue. Vue is available because it was included at top of page.
+    // This code is saying get createApp function from Vue and make it available to us for below code.
+    const { createApp } = Vue
+    // This line creates an instance of Vue app by using the function createApp. I am storing it in a variable but that is only needed for debugging.
+    // We pass in an object {} to createApp. This object simply defines what app contains specially data function.
+    var eveapp1 = createApp({
+        //Data function is where we define what data we want to use in our app
+        data() {
+            //This return is simply saying that if someone asks for data then return this as default. Or you can say start with this data.
+            return {
+                //This pageName variable is the one you use in template to show this string. You can use it many times or just once.
+                pageName: 'Invoice',
+                //I have created variables of different types so you can see how they are declared in javascript. but I think you already know a lot around this point. 
+                accoutNumber: 290,
+                isActive: false,
+                // I have used this date to get its string format and only take first 10 characters so date part is only needed. https://stackoverflow.com/a/50721014/923695
+                todaysDate:new Date().toISOString().slice(0,10),
+            }
+        }
+  }
+  // This is the end of object and then next line simply mount it to a div with ID eveapp.
+  ).mount('#eveapp')
+</script>
 </body>
 </html>
