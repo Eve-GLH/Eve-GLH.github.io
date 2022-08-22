@@ -156,7 +156,7 @@
                         <label for="date">Date:</label>
                         <!--Changed your date field to remove hard coded value and instead put in todays date. 
                             You can also bind min and max based on todays date for example 1 year before and after -->
-                        <input type="date" id="date" v-model="todaysDate" name="invoice-date" min="2022-01-01" max="2024-12-31">
+                        <input type="date" id="date" v-model="invoiceDate" name="invoice-date" min="2022-01-01" max="2024-12-31">
                         <label for="paid">Has the customer paid?</label>
                         <select id="paid" name="paid">
                             <option value="has-paid">Has Been Paid</option>
@@ -186,7 +186,7 @@
                             </div>
                         </div>
                         <div class="invoice__number">
-                            <p><b>Invoice Number: </b>2907220001</p>
+                            <p><b>Invoice Number: </b>{{invoiceDate.replace(/[-]/g, "")}}{{invoiceCount}}</p>
                         </div>
                         <div class="invoice__table">
                             <table>
@@ -260,9 +260,11 @@
                 isActive: false,
                 // I have used this date to get its string format and only take first 10 characters so date part is only needed. https://stackoverflow.com/a/50721014/923695
                 todaysDate:new Date().toISOString().slice(0,10),
+                invoiceDate: new Date().toISOString().slice(0,10).replace(/[-]/g, ""),
+                invoiceCount: '001',
             }
         }
-  }
+    }
   // This is the end of object and then next line simply mount it to a div with ID eveapp.
   ).mount('#eveapp')
 </script>
