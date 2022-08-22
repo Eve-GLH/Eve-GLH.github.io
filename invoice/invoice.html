@@ -261,7 +261,7 @@
                 // I have used this date to get its string format and only take first 10 characters so date part is only needed. https://stackoverflow.com/a/50721014/923695
                 todaysDate:new Date().toISOString().slice(0,10),
                 invoiceDate: new Date().toISOString().slice(0,10).replace(/[-]/g, ""),
-                invoiceCount: '001',
+                invoiceCount: Math.floor(Math.random() * (999-100+1)+100),
             }
         }
     }
