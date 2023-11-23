@@ -3,8 +3,6 @@
     
 
 const submit = document.getElementById("submit");
-const inputs = document.querySelectorAll('input[data-section="details"]');
-const selectors = document.querySelectorAll('select[data-section="details"]');
 
 submit.addEventListener("click", () => {
    let inputText;
@@ -13,6 +11,8 @@ submit.addEventListener("click", () => {
    let selectorText;
    let selectorTitle;
    let selectorId;
+   const inputs = document.querySelectorAll('input[data-section="details"]');
+   const selectors = document.querySelectorAll('select[data-section="details"]');
 
    for (const input of inputs) {
     if (input.value) {
@@ -31,4 +31,45 @@ submit.addEventListener("click", () => {
         selectorId.innerHTML = selectorText;
     }
    }
+
+//    const openingScriptScoreElem = document.querySelector('input[name="openingscript"]:checked');
+//    const closingScriptScoreElem = document.querySelector('input[name="closingscript"]:checked');
+//    const openingScriptScore = openingScriptScoreElem ? openingScriptScoreElem.value : 0;
+//    const closingScriptScore = closingScriptScoreElem ? closingScriptScoreElem.value : 0;
+//    const scriptsTotal = Number(openingScriptScore) + Number(closingScriptScore);
+//    const subtotalScripts = document.getElementById('subtotal__scripts');
+//    subtotalScripts.innerHTML = scriptsTotal;
 });
+
+window.onload = function() {
+    const radioButtons = document.querySelectorAll('input[type="radio"]');
+    radioButtons.forEach(function(radioButton) {
+        radioButton.addEventListener('change', updateTotals);
+    });
+}
+
+function updateTotals() {
+    //Scripts Section
+    const openingScriptScoreElem = document.querySelector('input[name="openingscript"]:checked');
+    const closingScriptScoreElem = document.querySelector('input[name="closingscript"]:checked');
+    const openingScriptScore = openingScriptScoreElem ? openingScriptScoreElem.value : 0;
+    const closingScriptScore = closingScriptScoreElem ? closingScriptScoreElem.value : 0;
+    const scriptsTotal = Number(openingScriptScore) + Number(closingScriptScore);
+    const subtotalScripts = document.getElementById('subtotal__scripts');
+    //Scripts Subtotal
+    subtotalScripts.innerHTML = scriptsTotal;
+
+    //Soft Skills Section
+    const activeScoreElem = document.querySelector('input[name="activelistening"]:checked');
+    const rapportScoreElem = document.querySelector('input[name="rapport"]:checked');
+    const toneScoreElem = document.querySelector('input[name="tone"]:checked');
+    const summaryScoreElem = document.querySelector('input[name="summary"]:checked');
+    const activeScore = activeScoreElem ? activeScoreElem.value : 0;
+    const rapportScore = rapportScoreElem ? rapportScoreElem.value : 0;
+    const toneScore = toneScoreElem ? toneScoreElem.value : 0;
+    const summaryScore = summaryScoreElem ? summaryScoreElem.value : 0;
+    const softSkillsTotal = Number(activeScore) + Number(rapportScore) + Number(toneScore) + Number(summaryScore);
+    const subtotalSoftSkills = document.getElementById('subtotal__soft-skills');
+    //Soft Skills Subtotal
+    subtotalSoftSkills.innerHTML = softSkillsTotal;
+}
