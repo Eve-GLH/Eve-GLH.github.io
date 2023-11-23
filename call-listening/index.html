@@ -1,0 +1,295 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet/less" type="text/css" href="styles.css" />
+    <script src="less.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <title>Call Listening</title>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1>Call Listening Sheet</h1>
+        </div>
+    </header>
+    <section class="title call-details">
+        <div class="container">
+            <h2>Call Details</h2>
+            <div class="questions__inner">
+                <div class="answer-section">
+                    <label for="reviewerName" class="question">Reviewer Name</label>
+                    <input data-section="details" type="text" name="reviewerName" />
+                </div>
+                <div class="answer-section">
+                    <label for="agentName" class="question">Agent Name</label>
+                    <input data-section="details" type="text" name="agentName" />
+                </div>
+                <div class="answer-section">
+                    <label for="agentExtension" class="question">Agent Extension</label>
+                    <select data-section="details" name="agentExtension" id="agentExtension">
+                        <option value="101">101</option>
+                        <option value="102">102</option>
+                        <option value="103">103</option>
+                        <option value="104">104</option>
+                        <option value="105">105</option>
+                        <option value="106">106</option>
+                        <option value="107">107</option>
+                        <option value="108">108</option>
+                        <option value="109">109</option>
+                        <option value="112">112</option>
+                        <option value="113">113</option>
+                        <option value="114">114</option>
+                        <option value="116">116</option>
+                        <option value="117">117</option>
+                    </select>
+                </div>
+                <div class="answer-section">
+                    <label for="department" class="question">Department</label>
+                    <select data-section="details" name="department" id="department">
+                        <option value="1st Line Support">1st Line Support</option>
+                        <option value="2nd Line Support">2nd Line Support</option>
+                    </select>
+                </div>
+                <div class="answer-section">
+                    <label for="timeOfCall" class="question">Time of Call</label>
+                    <input data-section="details" type="time" name="timeOfCall" />
+                </div>
+                <div class="answer-section">
+                    <label for="dateOfCall" class="question">Date of Call</label>
+                    <input data-section="details" type="date" name="dateOfCall" />
+                </div>
+                <div class="answer-section">
+                    <label for="callType" class="question">Inbound / Outbound</label>
+                    <select data-section="details" name="callType" id="callType">
+                        <option value="inbound">Inbound</option>
+                        <option value="outbound">Outbound</option>
+                    </select>
+                </div>
+                <div class="answer-section">
+                    <label for="customerPhone" class="question">Customer Phone Number</label>
+                    <input data-section="details" type="number" name="customerPhone" />
+                </div>
+                <div class="answer-section">
+                    <label for="businessName" class="question">Business Name</label>
+                    <input data-section="details" type="text" name="businessName" />
+                </div>
+                <div class="answer-section">
+                    <label for="crmLink" class="question">CRM Link</label>
+                    <input data-section="details" type="text" name="crmLink" />
+                </div>
+            </div>
+            <hr>
+        </div>
+    </section>
+    <section class="title scripts">
+        <div class="container">
+            <h2>Scripts</h2>
+            <div class="answer-section">
+                <p class="question">Did the agent use the appropriate opening script?</p>
+                <input type="radio" name="score" value="1"><label for="1">1</label>
+                <input type="radio" name="score" value="2"><label for="2">2</label>
+                <input type="radio" name="score" value="3"><label for="3">3</label>
+                <input type="radio" name="score" value="4"><label for="4">4</label>
+                <input type="radio" name="score" value="5"><label for="5">5</label>
+            </div>
+            <div class="answer-section">
+                <p class="question">Did the agent use the appropriate closing script?</p>
+                <input type="radio" name="score" value="1"><label for="1">1</label>
+                <input type="radio" name="score" value="2"><label for="2">2</label>
+                <input type="radio" name="score" value="3"><label for="3">3</label>
+                <input type="radio" name="score" value="4"><label for="4">4</label>
+                <input type="radio" name="score" value="5"><label for="5">5</label>
+            </div>
+            <hr>
+        </div>
+    </section>
+    <section class="title soft-skills">
+        <div class="container">
+            <h2>Soft Skills</h2>
+            <div class="answer-section">
+                <p class="question">How well did the agent show active listening skills?</p>
+                <input type="radio" name="score" value="1"><label for="1">1</label>
+                <input type="radio" name="score" value="2"><label for="2">2</label>
+                <input type="radio" name="score" value="3"><label for="3">3</label>
+                <input type="radio" name="score" value="4"><label for="4">4</label>
+                <input type="radio" name="score" value="5"><label for="5">5</label>
+                <input type="radio" name="score" value="6"><label for="6">6</label>
+                <input type="radio" name="score" value="7"><label for="7">7</label>
+                <input type="radio" name="score" value="8"><label for="8">8</label>
+                <input type="radio" name="score" value="9"><label for="9">9</label>
+                <input type="radio" name="score" value="10"><label for="10">10</label>
+            </div>
+            <div class="answer-section">
+                <p class="question">How was the agent's rapport building with the customer?</p>
+                <input type="radio" name="score" value="1"><label for="1">1</label>
+                <input type="radio" name="score" value="2"><label for="2">2</label>
+                <input type="radio" name="score" value="3"><label for="3">3</label>
+                <input type="radio" name="score" value="4"><label for="4">4</label>
+                <input type="radio" name="score" value="5"><label for="5">5</label>
+                <input type="radio" name="score" value="6"><label for="6">6</label>
+                <input type="radio" name="score" value="7"><label for="7">7</label>
+                <input type="radio" name="score" value="8"><label for="8">8</label>
+                <input type="radio" name="score" value="9"><label for="9">9</label>
+                <input type="radio" name="score" value="10"><label for="10">10</label>
+            </div>
+            <div class="answer-section">
+                <p class="question">Was the agent's tone appropriate to the situation?</p>
+                <input type="radio" name="score" value="1"><label for="1">1</label>
+                <input type="radio" name="score" value="2"><label for="2">2</label>
+                <input type="radio" name="score" value="3"><label for="3">3</label>
+                <input type="radio" name="score" value="4"><label for="4">4</label>
+                <input type="radio" name="score" value="5"><label for="5">5</label>
+                <input type="radio" name="score" value="6"><label for="6">6</label>
+                <input type="radio" name="score" value="7"><label for="7">7</label>
+                <input type="radio" name="score" value="8"><label for="8">8</label>
+                <input type="radio" name="score" value="9"><label for="9">9</label>
+                <input type="radio" name="score" value="10"><label for="10">10</label>
+            </div>
+            <div class="answer-section">
+                <p class="question">How well did the agent summarize the issue and further actions to be taken?</p>
+                <input type="radio" name="score" value="1"><label for="1">1</label>
+                <input type="radio" name="score" value="2"><label for="2">2</label>
+                <input type="radio" name="score" value="3"><label for="3">3</label>
+                <input type="radio" name="score" value="4"><label for="4">4</label>
+                <input type="radio" name="score" value="5"><label for="5">5</label>
+                <input type="radio" name="score" value="6"><label for="6">6</label>
+                <input type="radio" name="score" value="7"><label for="7">7</label>
+                <input type="radio" name="score" value="8"><label for="8">8</label>
+                <input type="radio" name="score" value="9"><label for="9">9</label>
+                <input type="radio" name="score" value="10"><label for="10">10</label>
+            </div>
+            <hr>
+        </div>
+    </section>
+    <section class="title processes">
+        <div class="container">
+            <h2>Processes</h2>
+            <p class="question">Was a clear note left on the CRM?</p>
+            <div class="answer-section">
+                <input type="radio" name="score" value="1"><label for="1">1</label>
+                <input type="radio" name="score" value="2"><label for="2">2</label>
+                <input type="radio" name="score" value="3"><label for="3">3</label>
+                <input type="radio" name="score" value="4"><label for="4">4</label>
+                <input type="radio" name="score" value="5"><label for="5">5</label>
+            </div>
+            <p class="question">Did the agent follow up on the issue correctly?</p>
+            <div class="answer-section">
+                <input type="radio" name="score" value="1"><label for="1">1</label>
+                <input type="radio" name="score" value="2"><label for="2">2</label>
+                <input type="radio" name="score" value="3"><label for="3">3</label>
+                <input type="radio" name="score" value="4"><label for="4">4</label>
+                <input type="radio" name="score" value="5"><label for="5">5</label>
+                <input type="radio" name="score" value="6"><label for="6">6</label>
+                <input type="radio" name="score" value="7"><label for="7">7</label>
+                <input type="radio" name="score" value="8"><label for="8">8</label>
+                <input type="radio" name="score" value="9"><label for="9">9</label>
+                <input type="radio" name="score" value="10"><label for="10">10</label>
+            </div>
+            <hr>
+        </div>
+    </section>
+    <section class="title compliance">
+        <div class="container">
+            <h2>Compliance</h2>
+            <p class="question">Did the agent attempt to identify who they were speaking to?</p>
+            <div class="answer-section">
+                <input type="radio" name="score" value="1"><label for="1">1</label>
+                <input type="radio" name="score" value="2"><label for="2">2</label>
+                <input type="radio" name="score" value="3"><label for="3">3</label>
+                <input type="radio" name="score" value="4"><label for="4">4</label>
+                <input type="radio" name="score" value="5"><label for="5">5</label>
+            </div>
+            <p class="question">Did the agent identify what level of access the caller should have?</p>
+            <div class="answer-section">
+                <input type="radio" name="score" value="1"><label for="1">1</label>
+                <input type="radio" name="score" value="2"><label for="2">2</label>
+                <input type="radio" name="score" value="3"><label for="3">3</label>
+                <input type="radio" name="score" value="4"><label for="4">4</label>
+                <input type="radio" name="score" value="5"><label for="5">5</label>
+            </div>
+            <p class="question">Did the agent identify a potentially vulnerable customer?</p>
+            <div class="answer-section">
+                <input type="radio" name="score" value="1"><label for="1">1</label>
+                <input type="radio" name="score" value="2"><label for="2">2</label>
+                <input type="radio" name="score" value="3"><label for="3">3</label>
+                <input type="radio" name="score" value="4"><label for="4">4</label>
+                <input type="radio" name="score" value="5"><label for="5">5</label>
+            </div>
+            <hr>
+        </div>
+    </section>
+    <section class="submitButton">
+        <div class="container">
+            <button id="submit">Submit</button>
+            <hr>
+        </div>
+    </section>
+    <section class="overall">
+        <div class="container">
+            <h2>Overall Score</h2>
+            <div class="subtotal">
+                <h3>Details</h3>
+                <div class="subtotal__details">
+                    <b>Reviewer Name: </b><p id="reviewerNameOutput"></p>
+                    <b>Agent Name: </b><p id="agentNameOutput"></p>
+                    <b>Agent Extension: </b><p id="agentExtensionOutput"></p>
+                    <b>Department: </b><p id="departmentOutput"></p>
+                    <b>Time of Call: </b><p id="timeOfCallOutput"></p>
+                    <b>Date of Call: </b><p id="dateOfCallOutput"></p>
+                    <b>Inbound / Outbound: </b><p id="typeOutput"></p>
+                    <b>Client CLI: </b><p id="customerPhoneOutput"></p>
+                    <b>Business Name: </b><p id="businessNameOutput"></p>
+                    <b>CRM Link: </b><p id="crmLinkOutput"></p>
+                </div>
+            </div>
+            <div class="subtotals">
+                <h3>Scripts</h3>
+                <p class="subtotal__scripts"></p>
+            </div>
+            <div class="subtotal">
+                <h3>Soft Skills</h3>
+                <p class="subtotal__soft-skills"></p>
+            </div>
+            <div class="subtotal">
+                <h3>Processes</h3>
+                <p class="subtotal__processes"></p>
+            </div>
+            <div class="subtotal">
+                <h3>Compliance</h3>
+                <p class="subtotal__compliance"></p>
+            </div>
+            <hr>
+        </div>
+    </section>
+    <section class="title notes">
+        <div class="container">
+            <h2>Notes</h2>
+            <label for="notes" class="question">Additional Notes</label>
+            <div class="answer-section">
+                <input type="text" name="notes" />
+            </div>
+            <hr>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner">
+                <p>Eve made dis</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        less = {
+            async: true
+        }
+    </script>
+    <script src="/theme/theme.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/less"></script>
+    
+    <script type="text/javascript" src="functions.js"></script>
+</body>
+</html>
