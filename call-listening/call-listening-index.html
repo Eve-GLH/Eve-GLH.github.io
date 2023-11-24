@@ -64,7 +64,7 @@
                 </div>
                 <div class="answer-section">
                     <label for="callType" class="question">Inbound / Outbound</label>
-                    <select data-section="details" name="callType" id="callType">
+                    <select data-section="details" name="type" id="callType">
                         <option value="inbound">Inbound</option>
                         <option value="outbound">Outbound</option>
                     </select>
@@ -222,6 +222,16 @@
             <hr>
         </div>
     </section>
+    <section class="title notes">
+        <div class="container">
+            <h2>Notes</h2>
+            <label for="notes" class="question">Additional Notes</label>
+            <div class="answer-section">
+                <input type="text" name="notes" />
+            </div>
+            <hr>
+        </div>
+    </section>
     <section class="submitButton">
         <div class="container">
             <button id="submit">Submit</button>
@@ -282,17 +292,10 @@
                 <h3>Compliance</h3>
                 <p id="subtotal__compliance"></p>
             </div>
-            <hr>
-        </div>
-    </section>
-    <section class="title notes">
-        <div class="container">
-            <h2>Notes</h2>
-            <label for="notes" class="question">Additional Notes</label>
-            <div class="answer-section">
-                <input type="text" name="notes" />
+            <div class="subtotal">
+                <h3>Notes</h3>
+                <p id="subtotal__notes"></p>
             </div>
-            <hr>
         </div>
     </section>
     <footer class="footer">
