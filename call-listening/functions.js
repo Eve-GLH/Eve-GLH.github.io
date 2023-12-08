@@ -90,3 +90,12 @@ function updateTotals() {
     //Compliance Subtotal
     subtotalComplianceElem.innerHTML = complianceTotal;
 }
+
+function downloadPDF() {
+    var pdf = new jsPDF('p', 'pt', 'a4');
+    $("#button-pdf").attr('hidden', 'true')
+    pdf.addHTML($("#overall"), 0, -20, { allowTaint: true, useCORS: true, pagesplit: false }, function () {
+    pdf.save('{{downloaded_file_name}}.pdf');
+    $("#button-pdf").removeAttr('hidden', 'true')
+  });
+}
