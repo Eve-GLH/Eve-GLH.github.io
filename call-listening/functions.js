@@ -30,13 +30,10 @@ submit.addEventListener("click", () => {
     }
    }
 
-//    const openingScriptScoreElem = document.querySelector('input[name="openingscript"]:checked');
-//    const closingScriptScoreElem = document.querySelector('input[name="closingscript"]:checked');
-//    const openingScriptScore = openingScriptScoreElem ? openingScriptScoreElem.value : 0;
-//    const closingScriptScore = closingScriptScoreElem ? closingScriptScoreElem.value : 0;
-//    const scriptsTotal = Number(openingScriptScore) + Number(closingScriptScore);
-//    const subtotalScripts = document.getElementById('subtotal__scripts');
-//    subtotalScripts.innerHTML = scriptsTotal;
+   const notes = document.querySelector('textarea[name="notes"]');
+   let notesText = notes.value;
+   let notesId = document.getElementById('subtotal__notes');
+   notesId.innerHTML = notesText;
 });
 
 window.onload = function() {
