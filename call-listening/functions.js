@@ -1,7 +1,5 @@
 //Call Details Section
 
-    
-
 const submit = document.getElementById("submit");
 
 submit.addEventListener("click", () => {
@@ -32,13 +30,10 @@ submit.addEventListener("click", () => {
     }
    }
 
-//    const openingScriptScoreElem = document.querySelector('input[name="openingscript"]:checked');
-//    const closingScriptScoreElem = document.querySelector('input[name="closingscript"]:checked');
-//    const openingScriptScore = openingScriptScoreElem ? openingScriptScoreElem.value : 0;
-//    const closingScriptScore = closingScriptScoreElem ? closingScriptScoreElem.value : 0;
-//    const scriptsTotal = Number(openingScriptScore) + Number(closingScriptScore);
-//    const subtotalScripts = document.getElementById('subtotal__scripts');
-//    subtotalScripts.innerHTML = scriptsTotal;
+   const notes = document.querySelector('textarea[name="notes"]');
+   let notesText = notes.value;
+   let notesId = document.getElementById('subtotal__notes');
+   notesId.innerHTML = notesText;
 });
 
 window.onload = function() {
@@ -94,4 +89,13 @@ function updateTotals() {
     const subtotalComplianceElem = document.getElementById('subtotal__compliance');
     //Compliance Subtotal
     subtotalComplianceElem.innerHTML = complianceTotal;
+}
+
+function downloadPDF() {
+    var pdf = new jsPDF('p', 'pt', 'a4');
+    $("#button-pdf").attr('hidden', 'true')
+    pdf.addHTML($("#overall"), 0, -20, { allowTaint: true, useCORS: true, pagesplit: false }, function () {
+    pdf.save('{{downloaded_file_name}}.pdf');
+    $("#button-pdf").removeAttr('hidden', 'true')
+  });
 }

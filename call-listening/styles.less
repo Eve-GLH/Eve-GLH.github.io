@@ -1,4 +1,8 @@
-﻿.header, .footer {
+﻿html {
+    background: #FFF;
+}
+
+.header, .footer {
     background-color: #0054db;
     background: linear-gradient(to bottom, #337ef5, #0054db);
     padding: 60px 0 40px;
@@ -38,5 +42,26 @@ section {
     &__section {
         width: 40%;
         margin: 10px 30px;
+    }
+}
+
+.notes {
+    textarea {
+        width: 100%;
+        height: 200px;
+        //overflow: scroll;
+    }
+}
+
+.scoring-section {
+    &__inner {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        section {  
+            width: 40%;
+            margin: 10px 30px;
+        }
     }
 }
