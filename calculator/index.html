@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <title>Calculator</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" defer></script>
+        <script src="app.js" defer></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link rel="stylesheet" href="/styles/styles.css" type="text/css">
+    </head>
+    <body>
+        <div id="app" class="container">
+            <h1>Vue Calculator</h1>
+            <form class="calculator" v-on:reset="resetFields" >
+                <div class="calculator__display">
+                    <p>{{ display }}</p>
+                </div>
+                <div class="calculator__buttons">
+                    <div class="calculator__buttons-numbers">
+                        <button class="calc-button calc-button__num" @click.prevent="addDigit(1)">1</button>
+                        <button class="calc-button calc-button__num" @click.prevent="addDigit(2)">2</button>
+                        <button class="calc-button calc-button__num" @click.prevent="addDigit(3)">3</button>
+                        <button class="calc-button calc-button__num" @click.prevent="addDigit(4)">4</button>
+                        <button class="calc-button calc-button__num" @click.prevent="addDigit(5)">5</button>
+                        <button class="calc-button calc-button__num" @click.prevent="addDigit(6)">6</button>
+                        <button class="calc-button calc-button__num" @click.prevent="addDigit(7)">7</button>
+                        <button class="calc-button calc-button__num" @click.prevent="addDigit(8)">8</button>
+                        <button class="calc-button calc-button__num" @click.prevent="addDigit(9)">9</button>
+                        <button class="calc-button calc-button__num" @click.prevent="addDigit(0)">0</button>
+                    </div>
+                    <div class="calculator__buttons-operators">
+                        <button class="calc-button" @click.prevent="setOperator('+')">+</button>
+                        <button class="calc-button" @click.prevent="setOperator('-')">-</button>
+                        <button class="calc-button" @click.prevent="setOperator('*')">*</button>
+                        <button class="calc-button" @click.prevent="setOperator('/')">/</button>
+                    </div>
+                    <div>
+                        <button class="calc-button calc-button__clear" type="reset" id="reset">Clear</button>
+                        <button class="calc-button" id="calculate" @click.prevent="calcTotal">=</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    </body>
+</html>
