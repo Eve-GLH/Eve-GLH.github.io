@@ -15,25 +15,24 @@
                 </div>
                 <div class="calculator__buttons">
                     <div class="calculator__buttons-numbers">
-                        <button class="calc-button calc-button__num" @click.prevent="addDigit(1)">1</button>
-                        <button class="calc-button calc-button__num" @click.prevent="addDigit(2)">2</button>
-                        <button class="calc-button calc-button__num" @click.prevent="addDigit(3)">3</button>
-                        <button class="calc-button calc-button__num" @click.prevent="addDigit(4)">4</button>
-                        <button class="calc-button calc-button__num" @click.prevent="addDigit(5)">5</button>
-                        <button class="calc-button calc-button__num" @click.prevent="addDigit(6)">6</button>
                         <button class="calc-button calc-button__num" @click.prevent="addDigit(7)">7</button>
                         <button class="calc-button calc-button__num" @click.prevent="addDigit(8)">8</button>
                         <button class="calc-button calc-button__num" @click.prevent="addDigit(9)">9</button>
+                        <button class="calc-button calc-button__num" @click.prevent="addDigit(4)">4</button>
+                        <button class="calc-button calc-button__num" @click.prevent="addDigit(5)">5</button>
+                        <button class="calc-button calc-button__num" @click.prevent="addDigit(6)">6</button>
+                        <button class="calc-button calc-button__num" @click.prevent="addDigit(1)">1</button>
+                        <button class="calc-button calc-button__num" @click.prevent="addDigit(2)">2</button>
+                        <button class="calc-button calc-button__num" @click.prevent="addDigit(3)">3</button>
+                        <button class="calc-button calc-button__clear" type="reset" id="reset">Clear</button>
                         <button class="calc-button calc-button__num" @click.prevent="addDigit(0)">0</button>
+                        <button class="calc-button calc-button__num" @click.prevent="addDigit('.')">.</button>
                     </div>
                     <div class="calculator__buttons-operators">
                         <button class="calc-button" @click.prevent="setOperator('+')">+</button>
                         <button class="calc-button" @click.prevent="setOperator('-')">-</button>
                         <button class="calc-button" @click.prevent="setOperator('*')">*</button>
                         <button class="calc-button" @click.prevent="setOperator('/')">/</button>
-                    </div>
-                    <div>
-                        <button class="calc-button calc-button__clear" type="reset" id="reset">Clear</button>
                         <button class="calc-button" id="calculate" @click.prevent="calcTotal">=</button>
                     </div>
                 </div>

@@ -30,11 +30,18 @@ label {
     }
 
     &__buttons {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
         &-numbers {
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
             justify-content: space-between;
+        }
+        &-operators {
+            display: flex;
+            flex-direction: column;
         }
     }
 }
@@ -58,6 +65,7 @@ label {
     &__clear {
         background-color: #c78214;
         box-shadow: 2px 2px 1px #825308;
+        width: 30%;
         &:hover {
             background-color: #c78214;
             box-shadow: -1px -1px 1px #825308;
@@ -66,8 +74,5 @@ label {
 
     &__num {
         width: 30%;
-        &:nth-last-child(1) {
-            width: 100%;
-        }
     }
 }
