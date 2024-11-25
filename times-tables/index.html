@@ -6,7 +6,22 @@
     </head>
     <body>
         <div id="app">
-            
+            <div class="container">
+                <h1>Times Tables</h1>
+                <section>
+                    <label for="num1">First Number: </label>
+                    <input id="num1" v-model="num1">
+                    <label for="num2">Second Number: </label>
+                    <input id="num2" v-model="num2">
+                </section>
+                <section>
+                    <ul>
+                        <li v-for="item in multipliers" :key="item.m">
+                            {{ num1 }} X {{ item.m }} = {{ item.total }}
+                        </li>
+                    </ul>
+                </section>
+            </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" defer></script>
         <script src="app.js" defer></script>
