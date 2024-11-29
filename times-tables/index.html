@@ -22,6 +22,11 @@
                         </li>
                     </ul>
                 </section>
+                <section class="number-box__outer">
+                    <div :class="[{ 'number-box__shared': sharedNumbers.includes(item.box) }, boxesClass]" v-for="item in createNumbers" :key="item.box">
+                        {{ item.box }}
+                    </div>
+                </section>
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" defer></script>
