@@ -14,6 +14,7 @@
                     <label for="num2">Second Number: </label>
                     <input id="num2" v-model="num2">
                 </section>
+                <div :class="isValid ? validClass : warningClass">Not valid! Make sure both numbers are between 1 and 12.</div>
                 <section>
                     <ul>
                         <li v-for="item in multipliers" :key="item.m">
