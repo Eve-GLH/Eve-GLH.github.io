@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>Times Tables Helper</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link href="/times-tables/styles/styles.css" type="text/css" rel="stylesheet">
+    </head>
+    <body>
+        <div id="app">
+            <div class="container">
+                <h1>Times Tables</h1>
+                <section>
+                    <label for="num1">First Number: </label>
+                    <input id="num1" v-model="num1">
+                    <label for="num2">Second Number: </label>
+                    <input id="num2" v-model="num2">
+                </section>
+                <div :class="isValid ? validClass : warningClass">Not valid! Make sure both numbers are between 1 and 12.</div>
+                <section>
+                    <ul>
+                        <li v-for="item in multipliers" :key="item.m">
+                            {{ num1 }} X {{ item.m }} = {{ item.total }}
+                        </li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" defer></script>
+        <script src="app.js" defer></script>
+    </body>
+</html>
