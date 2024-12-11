@@ -37,7 +37,7 @@ const app = new Vue ({
             const results = this.multipliers;
             const allNumbers = this.createNumbers;
             const resultTotals = results.map(r => r.total);
-            this.sharedNumbers = this.createNumbers.filter(num => resultTotals.includes(num.box)).map(num => num.box);
+            this.sharedNumbers = allNumbers.filter(num => resultTotals.includes(num.box)).map(num => num.box);
         },
         isValidFunc: function() {
             if (this.num1 >= 1 && this.num1 <= 12 && this.num2 >= 1 && this.num2 <= 12) {
