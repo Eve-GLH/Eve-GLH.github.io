@@ -1,31 +1,31 @@
 const app = new Vue ({
     el: '#app',
     data: {
-        num1: 5,
-        num2: 5,
-        warningClass: 'warning',
-        validClass: 'valid',
-        isValid: true,
-        boxesClass: 'number-box',
-        sharedNumbers: []
+        firstNumber: 5,
+        secondNumber: 5,
+        warningCssClass: 'warning',
+        validCssClass: 'valid',
+        isInputValid: true,
+        numberBoxCssClass: 'number-box',
+        sharedNumbersList: []
     },
     computed: {
-        multipliers() {
-            if (!this.isValid) return;
+        multiplicationTable() {
+            if (!this.isInputValid) return;
             const results = [];
-            for (let i=1; i <= this.num2; i++){
+            for (let number=1; number <= this.secondNumber; number++){
                 results.push({
-                    m: i,
-                    total: this.num1 * i
+                    m: number,
+                    total: this.firstNumber * number
                 });
             }
             return results;
         },
-        createNumbers() {
+        numberBoxes() {
             const allNumbers = [];
-            for (let i=1; i<= 100; i++){
+            for (let number=1; number<= 100; number++){
                 allNumbers.push({
-                    box: i
+                    box: number
                 })
             }
             return allNumbers;
@@ -33,30 +33,30 @@ const app = new Vue ({
     },
     methods: {
         
-        findSharedNumbers: function() {
-            const results = this.multipliers;
-            const allNumbers = this.createNumbers;
+        calculateSharedNumbers: function() {
+            const results = this.multiplicationTable;
+            const allNumbers = this.numberBoxes;
             const resultTotals = results.map(r => r.total);
-            this.sharedNumbers = this.createNumbers.filter(num => resultTotals.includes(num.box)).map(num => num.box);
+            this.sharedNumbersList = this.numberBoxes.filter(num => resultTotals.includes(num.box)).map(num => num.box);
         },
-        isValidFunc: function() {
-            if (this.num1 >= 1 && this.num1 <= 12 && this.num2 >= 1 && this.num2 <= 12) {
-                this.isValid = true;
+        validateInput: function() {
+            if (this.firstNumber >= 1 && this.firstNumber <= 12 && this.secondNumber >= 1 && this.secondNumber <= 12) {
+                this.isInputValid = true;
             } else {
-                this.isValid = false;
+                this.isInputValid = false;
             }
-            this.findSharedNumbers();
+            this.calculateSharedNumbers();
         }
     },
     watch: {
-        num1(value) {
-            this.isValidFunc();
+        firstNumber(value) {
+            this.validateInput();
         },
-        num2(value) {
-            this.isValidFunc();
+        secondNumber(value) {
+            this.isInputValidFunc();
         }
     },
     mounted() {
-        this.findSharedNumbers();
+        this.calculateSharedNumbers();
     }
 })

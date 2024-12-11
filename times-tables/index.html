@@ -9,21 +9,21 @@
             <div class="container">
                 <h1>Times Tables</h1>
                 <section>
-                    <label for="num1">First Number: </label>
-                    <input id="num1" v-model="num1">
-                    <label for="num2">Second Number: </label>
-                    <input id="num2" v-model="num2">
+                    <label for="firstNumber">First Number: </label>
+                    <input id="firstNumber" v-model="firstNumber">
+                    <label for="secondNumber">Second Number: </label>
+                    <input id="secondNumber" v-model="secondNumber">
                 </section>
-                <div :class="isValid ? validClass : warningClass">Not valid! Make sure both numbers are between 1 and 12.</div>
+                <div :class="isInputValid ? validCssClass : warningCssClass">Not valid! Make sure both numbers are between 1 and 12.</div>
                 <section>
                     <ul>
-                        <li v-for="item in multipliers" :key="item.m">
-                            {{ num1 }} X {{ item.m }} = {{ item.total }}
+                        <li v-for="item in multiplicationTable" :key="item.m">
+                            {{ firstNumber }} X {{ item.m }} = {{ item.total }}
                         </li>
                     </ul>
                 </section>
                 <section class="number-box__outer">
-                    <div :class="[{ 'number-box__shared': sharedNumbers.includes(item.box) }, boxesClass]" v-for="item in createNumbers" :key="item.box">
+                    <div :class="[{ 'number-box__shared': sharedNumbersList.includes(item.box) }, numberBoxCssClass]" v-for="item in numberBoxes" :key="item.box">
                         {{ item.box }}
                     </div>
                 </section>
