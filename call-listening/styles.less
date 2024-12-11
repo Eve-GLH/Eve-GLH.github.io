@@ -1,12 +1,23 @@
-﻿html {
-    background: #FFF;
+﻿@lightest: #faddda;
+@light: #cfb8b5;
+@mediumlight: #a59290;
+@medium: #7a6c6b;
+@dark: #504746;
+@darkest: #252121;
+
+body {
+    background-color: @darkest;
+    color: @light;
 }
 
 .header, .footer {
-    background-color: #0054db;
-    background: linear-gradient(to bottom, #337ef5, #0054db);
+    background-color: @medium;
     padding: 60px 0 40px;
-    color: #FFF;
+    color: @lightest;
+}
+
+h1 {
+    text-shadow: 4px 4px 0px @darkest;
 }
 
 section {
@@ -28,6 +39,10 @@ section {
         display: flex;
         flex-direction: column;
     }
+}
+
+hr {
+    border-top: 1px solid @medium;
 }
 
 .subtotal {
@@ -64,4 +79,24 @@ section {
             margin: 10px 30px;
         }
     }
+}
+
+input, select, textarea {
+    border: 1px solid @medium;
+    background: @dark;
+    color: @lightest;
+    height: 50px;
+    box-shadow: 4px 4px 0 rgba(80, 71, 70, 0.5);
+    &::placeholder {
+        color: @light;
+    }
+}
+
+button {
+    background: @medium;
+    color: @lightest;
+    border: none;
+    border-radius: 50px;
+    padding: 20px 30px;
+    font-size: 18px;
 }
