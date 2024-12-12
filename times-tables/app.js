@@ -35,7 +35,6 @@ const app = new Vue ({
         
         calculateSharedNumbers: function() {
             const results = this.multiplicationTable;
-            const allNumbers = this.numberBoxes;
             const resultTotals = results.map(r => r.total);
             this.sharedNumbersList = this.numberBoxes.filter(num => resultTotals.includes(num.box)).map(num => num.box);
         },
