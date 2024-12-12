@@ -35,8 +35,9 @@ const app = new Vue ({
         
         calculateSharedNumbers: function() {
             const results = this.multiplicationTable;
+            const allNumbers = this.numberBoxes;
             const resultTotals = results.map(r => r.total);
-            this.sharedNumbersList = this.numberBoxes.filter(num => resultTotals.includes(num.box)).map(num => num.box);
+            this.sharedNumbersList = allNumbers.filter(num => resultTotals.includes(num.box)).map(num => num.box);
         },
         validateInput: function() {
             if (this.firstNumber >= 1 && this.firstNumber <= 12 && this.secondNumber >= 1 && this.secondNumber <= 12) {
