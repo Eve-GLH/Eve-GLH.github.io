@@ -3,7 +3,10 @@
 @mid: #ACB0BD;
 @light: #D0CDD7;
 @white: #D9DBF1;
-
+body {
+    background: #333;
+    color: @light;
+}
 .header {
     &__wrapper {
         background-color: @dark;
@@ -13,13 +16,11 @@
 }
 
 .symptoms {
-    background-color: @grey;
     color: @light;
     padding: 30px 0;
 }
 
 .pain-tracker {
-    background: @mid;
     color: @grey;
     padding: 30px 0;
     table {
