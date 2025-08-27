@@ -1,0 +1,260 @@
+@xs: (max-width: 575px);
+@sm: (min-width: 576px);
+@md: (min-width: 768px);
+@lg: (min-width: 992px);
+
+@green: #B5CDA3;
+@beige: #F6EBD9;
+@pink: #EEC9C6;
+@grey: #333333;
+
+
+.Playfair {
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.Lato, body {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.btn-primary {
+    background-color: @pink;
+    color: @grey;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    border: 1px solid @pink;
+    .Lato;
+    transition: all 0.5s;
+    display: block;
+    width: fit-content;
+    text-align: center;
+    margin: 20px auto;
+
+    &:hover, &:focus {
+        background-color: darken(@pink, 10%);
+        color: @beige;
+        border: 1px solid @pink;
+    }
+}
+
+.btn-secondary {
+    background-color: @green;
+    color: @grey;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    border: 1px solid @green;
+    .Lato;
+    transition: all 0.5s;
+    display: block;
+    width: fit-content;
+    text-align: center;
+    margin: 20px auto;
+
+    &:hover, &:focus {
+        background-color: transparent;
+        color: @green;
+        border: 1px solid @green;
+    }
+}
+
+.toplinks {
+    background-color: @grey;
+    padding: 30px 0 10px;
+    &__inner {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        @media @md {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+    &__nav {
+        width: 84%;
+        margin-left: auto;
+    }
+    &__ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        list-style: none;
+    }
+    &__link {
+        padding: 10px;
+        color: @beige;
+        text-decoration: none;
+        font-size: 1.3rem;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    &__logo {
+        width: 15%;
+        top: 0;
+        position: absolute;
+        display: inline-block;
+        height: auto;
+        img {
+            width: 100%;
+            aspect-ratio: 257 / 323;
+        }
+    }
+}
+
+.hero {
+    background-color: @grey;
+    padding: 60px 0;
+    &__inner {
+        .Playfair;
+        text-align: center;
+        font-style: italic;
+        color: @beige;
+        h1 {
+            color: @pink;
+        }
+    }
+
+    &__cta {
+        display: inline-block;
+        margin: 10px;
+    }
+}
+
+.schedule {
+    background-color: #FFF;
+    padding: 60px 0;
+
+    table {
+        thead {
+            tr {
+                th {
+                    background-color: darken(@beige, 25%);
+                }
+            }
+        }
+        tbody {
+            tr {
+                &:nth-of-type(odd) {
+                    td {
+                        background-color: @beige;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.section-title {
+    .Playfair;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 2.2rem;
+}
+
+.section-description {
+    text-align: center;
+}
+
+.book {
+    background-color: @green;
+    padding: 60px 0;
+}
+
+.team {
+    background-color: @beige;
+    padding: 60px 0;
+    &__inner {
+        display: flex;
+        flex-direction: column;
+        @media @sm {
+            flex-direction: row;
+            justify-content: space-evenly;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+    }
+    &__card {
+        display: flex;
+        flex-direction: row;
+        padding: 30px 20px;
+        margin: 10px 5px;
+        justify-content: space-evenly;
+        align-items: center;
+        transition: all 0.5s;
+        background: #FFF;
+        border-radius: 20px;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        @media @sm {
+            width: 48%;
+        }
+        &:hover {
+            box-shadow: 0 0 0 rgba(0,0,0,0);
+        }
+    }
+
+    &__photo {
+        width: 30%;
+        border-radius: 50%;
+    }
+    &__text {
+        width: 60%;
+    }
+    &__name {
+        .Playfair;
+        font-size: 1.5rem;
+        margin: 0;
+        color: @green;
+    }
+}
+
+.testimonials {
+    background-color: @grey;
+    padding: 60px 0;
+    &__inner {
+    }
+    &__card {
+        background: #FFF;
+        border-radius: 20px;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        padding: 20px;
+        margin: 10px 5px;
+        width: 80%;
+        @media @sm {
+            width: 30%;
+        }
+    }
+    &__text {
+        font-style: italic;
+        margin-bottom: 10px;
+    }
+    &__author {
+        text-align: right;
+        font-weight: bold;
+        color: @green;
+    }
+}
+
+.footer {
+    background-color: @grey;
+    color: @beige;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 0.9rem;
+    a {
+        color: @beige;
+        text-decoration: none;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
