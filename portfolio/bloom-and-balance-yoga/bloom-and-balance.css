@@ -10,6 +10,14 @@ body {
   font-weight: 400;
   font-style: normal;
 }
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+img {
+  max-width: 100%;
+}
 .btn-primary {
   background-color: #EEC9C6;
   color: #333333;
@@ -97,6 +105,7 @@ body {
   position: absolute;
   display: inline-block;
   height: auto;
+  z-index: 2;
 }
 .toplinks__logo img {
   width: 100%;
@@ -105,6 +114,7 @@ body {
 .hero {
   background-color: #333333;
   padding: 60px 0;
+  position: relative;
 }
 .hero__inner {
   font-family: "Playfair Display", serif;
@@ -121,6 +131,60 @@ body {
 .hero__cta {
   display: inline-block;
   margin: 10px;
+}
+.hero:before {
+  content: "";
+  background-image: url("lotus.png");
+  background-size: 15%;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  opacity: 0.5;
+  z-index: 0;
+  transform: translate(-5%, 10%);
+  width: 100%;
+  height: 100%;
+}
+.gallery {
+  padding: 120px 0;
+}
+.gallery__inner {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.gallery__image {
+  width: 45%;
+  aspect-ratio: 4 / 3;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+.gallery__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.gallery__image--1 {
+  transform: translateY(25%);
+}
+.gallery__image--2 {
+  transform: translateX(-10%);
+}
+.gallery__image--3 {
+  transform: translateX(-20%) translateY(-25%);
+}
+.gallery:before {
+  content: url("lotus.png");
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  opacity: 0.8;
+  z-index: 0;
+  transform: translate(30%, 30%);
 }
 .schedule {
   background-color: #FFF;
@@ -148,9 +212,40 @@ body {
   background-color: #B5CDA3;
   padding: 60px 0;
 }
+.book-form form {
+  text-align: left;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.book-form form .form-field {
+  width: 48%;
+}
+.book-form form input,
+.book-form form select,
+.book-form form textarea {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #333333;
+  border-radius: 5px;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .book-form form input,
+  .book-form form select,
+  .book-form form textarea {
+    width: 100%;
+  }
+}
+.book-form form button {
+  margin-top: 10px;
+}
 .team {
   background-color: #F6EBD9;
   padding: 60px 0;
+  position: relative;
 }
 .team__inner {
   display: flex;
@@ -175,6 +270,7 @@ body {
   background: #FFF;
   border-radius: 20px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1;
 }
 @media (min-width: 576px) {
   .team__card {
@@ -200,14 +296,27 @@ body {
   margin: 0;
   color: #B5CDA3;
 }
+.team:before {
+  content: url("lotus.png");
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  opacity: 0.8;
+  transform: translate(30%, -10%);
+}
 .testimonials {
   background-color: #333333;
   padding: 60px 0;
 }
 .testimonials__card {
+  min-height: 160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   background: #FFF;
-  border-radius: 20px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.5);
   padding: 20px;
   margin: 10px 5px;
   width: 80%;
@@ -225,6 +334,29 @@ body {
   text-align: right;
   font-weight: bold;
   color: #B5CDA3;
+}
+.testimonials .slick-dots {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+  display: flex !important;
+  justify-content: center;
+  font-size: 0;
+}
+.testimonials .slick-dots li {
+  margin: 0 5px;
+}
+.testimonials .slick-dots li button {
+  background: #F6EBD9;
+  border: none;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.testimonials .slick-dots li button:hover {
+  background: #ecd5b0;
 }
 .footer {
   background-color: #333333;
