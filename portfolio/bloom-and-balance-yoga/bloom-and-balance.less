@@ -1,0 +1,393 @@
+@xs: (max-width: 575px);
+@sm: (min-width: 576px);
+@md: (min-width: 768px);
+@lg: (min-width: 992px);
+
+@green: #B5CDA3;
+@beige: #F6EBD9;
+@pink: #EEC9C6;
+@grey: #333333;
+
+
+.Playfair {
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.Lato, body {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+html, body {
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+}
+
+.btn-primary {
+    background-color: @pink;
+    color: @grey;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    border: 1px solid @pink;
+    .Lato;
+    transition: all 0.5s;
+    display: block;
+    width: fit-content;
+    text-align: center;
+    margin: 20px auto;
+
+    &:hover, &:focus {
+        background-color: darken(@pink, 10%);
+        color: @beige;
+        border: 1px solid @pink;
+    }
+}
+
+.btn-secondary {
+    background-color: @green;
+    color: @grey;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    border: 1px solid @green;
+    .Lato;
+    transition: all 0.5s;
+    display: block;
+    width: fit-content;
+    text-align: center;
+    margin: 20px auto;
+
+    &:hover, &:focus {
+        background-color: transparent;
+        color: @green;
+        border: 1px solid @green;
+    }
+}
+
+.toplinks {
+    background-color: @grey;
+    padding: 30px 0 10px;
+    &__inner {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        @media @md {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+    &__nav {
+        width: 84%;
+        margin-left: auto;
+    }
+    &__ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        list-style: none;
+    }
+    &__link {
+        padding: 10px;
+        color: @beige;
+        text-decoration: none;
+        font-size: 1.3rem;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    &__logo {
+        width: 15%;
+        top: 0;
+        position: absolute;
+        display: inline-block;
+        height: auto;
+        z-index: 2;
+        img {
+            width: 100%;
+            aspect-ratio: 257 / 323;
+        }
+    }
+}
+
+.hero {
+    background-color: @grey;
+    padding: 60px 0;
+    position: relative;
+    &__inner {
+        .Playfair;
+        text-align: center;
+        font-style: italic;
+        color: @beige;
+        h1 {
+            color: @pink;
+        }
+    }
+
+    &__cta {
+        display: inline-block;
+        margin: 10px;
+    }
+    &:before {
+        content: "";
+        background-image: url("lotus.png");
+        background-size: 15%;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        opacity: 0.5;
+        z-index: 0;
+        transform: translate(-5%, 10%);
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.gallery {
+    padding: 120px 0;
+    &__inner {
+        position: relative;
+        display: flex;
+        justify-content: center;
+    }
+    &__image {
+        width: 45%;
+        aspect-ratio: 4 / 3;
+        box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+        position: relative;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        &--1 {
+            transform: translateY(25%);
+        }
+        &--2 {
+            transform: translateX(-10%);
+        }
+        &--3 {
+            transform: translateX(-20%) translateY(-25%);
+        }
+
+    }
+
+    &:before {
+        content: url("lotus.png");
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+        opacity: 0.8;
+        z-index: 0;
+        transform: translate(30%, 30%);
+    }
+}
+
+.schedule {
+    background-color: #FFF;
+    padding: 60px 0;
+
+    table {
+        thead {
+            tr {
+                th {
+                    background-color: darken(@beige, 25%);
+                }
+            }
+        }
+        tbody {
+            tr {
+                &:nth-of-type(odd) {
+                    td {
+                        background-color: @beige;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.section-title {
+    .Playfair;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 2.2rem;
+}
+
+.section-description {
+    text-align: center;
+}
+
+.book {
+    background-color: @green;
+    padding: 60px 0;
+    &-form {
+        form {
+            text-align: left;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            .form-field {
+                width: 48%;
+            }
+            input, select, textarea {
+                margin: 10px 0;
+                padding: 10px;
+                border: 1px solid @grey;
+                border-radius: 5px;
+                width: 100%;
+                @media @md {
+                    width: 100%;
+                }
+            }
+            button {
+                margin-top: 10px;
+            }
+        }
+    }
+}
+
+.team {
+    background-color: @beige;
+    padding: 60px 0;
+    position: relative;
+    &__inner {
+        display: flex;
+        flex-direction: column;
+        @media @sm {
+            flex-direction: row;
+            justify-content: space-evenly;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+    }
+    &__card {
+        display: flex;
+        flex-direction: row;
+        padding: 30px 20px;
+        margin: 10px 5px;
+        justify-content: space-evenly;
+        align-items: center;
+        transition: all 0.5s;
+        background: #FFF;
+        border-radius: 20px;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        z-index: 1;
+        @media @sm {
+            width: 48%;
+        }
+        &:hover {
+            box-shadow: 0 0 0 rgba(0,0,0,0);
+        }
+    }
+
+    &__photo {
+        width: 30%;
+        border-radius: 50%;
+    }
+    &__text {
+        width: 60%;
+    }
+    &__name {
+        .Playfair;
+        font-size: 1.5rem;
+        margin: 0;
+        color: @green;
+    }
+
+    &:before {
+        content: url("lotus.png");
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        z-index: 0;
+        opacity: 0.8;
+        transform: translate(30%, -10%);
+    }
+}
+
+.testimonials {
+    background-color: @grey;
+    padding: 60px 0;
+    &__card {
+        min-height: 160px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background: #FFF;
+        border-radius: 10px;
+        box-shadow: 3px 5px 10px rgba(0,0,0,0.5);
+        padding: 20px;
+        margin: 10px 5px;
+        width: 80%;
+        @media @sm {
+            width: 30%;
+        }
+    }
+
+    &__text {
+        font-style: italic;
+        margin-bottom: 10px;
+    }
+    &__author {
+        text-align: right;
+        font-weight: bold;
+        color: @green;
+    }
+    .slick-dots {
+        list-style: none;
+        padding: 0;
+        margin: 20px 0;
+        display: flex !important;
+        justify-content: center;
+        font-size: 0;
+
+        li {
+            margin: 0 5px;
+            button {
+                background: @beige;
+                border: none;
+                border-radius: 50%;
+                width: 10px;
+                height: 10px;
+                cursor: pointer;
+                transition: all 0.3s;
+                &:hover {
+                    background: darken(@beige, 10%);
+                }
+            }
+        }
+    }
+}
+
+.footer {
+    background-color: @grey;
+    color: @beige;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 0.9rem;
+    a {
+        color: @beige;
+        text-decoration: none;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
