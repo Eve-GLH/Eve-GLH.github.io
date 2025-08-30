@@ -97,6 +97,11 @@ img {
         flex-direction: row;
         justify-content: center;
         list-style: none;
+        flex-wrap: wrap;
+    }
+    &__li {
+        display: flex;
+        align-items: center;
     }
     &__link {
         padding: 10px;
@@ -105,6 +110,12 @@ img {
         font-size: 1.3rem;
         &:hover {
             text-decoration: underline;
+        }
+        &--alt {
+            .btn-secondary;
+            display: inline-block;
+            margin: 0;
+            padding: 10px;
         }
     }
     &__logo {
@@ -153,48 +164,65 @@ img {
         transform: translate(-5%, 10%);
         width: 100%;
         height: 100%;
+        pointer-events: none;
     }
 }
 
 .gallery {
-    padding: 120px 0;
+    padding: 180px 0 60px;
     &__inner {
         position: relative;
-        display: flex;
-        justify-content: center;
+        min-height: 350px;
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
     }
     &__image {
-        width: 45%;
         aspect-ratio: 4 / 3;
-        box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+        z-index: 1;
         position: relative;
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-        &--1 {
-            transform: translateY(25%);
-        }
-        &--2 {
-            transform: translateX(-10%);
-        }
-        &--3 {
-            transform: translateX(-20%) translateY(-25%);
-        }
+        @media @md {
+            position: absolute;
+            width: 40%;
+            opacity: 0;
+            animation: fadeInRight 1.4s ease forwards;
 
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+                box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+            }
+
+            &--1 {
+                left: 0;
+                bottom: 0;
+                z-index: 1;
+                animation-delay: 0.1s;
+            }
+            &--2 {
+                left: 30%;
+                bottom: 40px;
+                z-index: 2;
+                animation-delay: 0.3s;
+            }
+            &--3 {
+                left: 60%;
+                bottom: 80px;
+                z-index: 3;
+                animation-delay: 0.5s;
+            }
+        }
     }
-
-    &:before {
+    &:after {
         content: url("lotus.png");
         position: absolute;
-        right: 0;
         bottom: 0;
-        z-index: 1;
+        right: 0;
+        transform: translate(30%, 30%);
         opacity: 0.8;
         z-index: 0;
-        transform: translate(30%, 30%);
     }
 }
 
@@ -235,6 +263,9 @@ img {
 
 .book {
     background-color: @green;
+    background: linear-gradient(rgba(181, 205, 163, 0.7), rgba(181, 205, 163, 0.7)), url("19742.jpg");
+    background-repeat: repeat;
+    background-size: contain;
     padding: 60px 0;
     &-form {
         form {
@@ -337,8 +368,13 @@ img {
         padding: 20px;
         margin: 10px 5px;
         width: 80%;
+        min-height: 235px;
         @media @sm {
             width: 30%;
+            min-height: 210px;
+        }
+        @media @md {
+            min-height: 175px;
         }
     }
 
@@ -389,5 +425,19 @@ img {
         &:hover {
             text-decoration: underline;
         }
+    }
+}
+
+//Animations
+
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(60px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
     }
 }
