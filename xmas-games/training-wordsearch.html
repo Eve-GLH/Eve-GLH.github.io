@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training Wordsearch</title>
+    <style>
+                .back-home {
+                    position: absolute;
+                    top: 24px;
+                    left: 32px;
+                    background: #d3d6db;
+                    color: #111;
+                    font-weight: 600;
+                    font-size: 1.05em;
+                    padding: 10px 22px 10px 16px;
+                    border-radius: 8px;
+                    text-decoration: none;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+                    border: 2px solid #b0b3b8;
+                    transition: background 0.2s, color 0.2s, border 0.2s, transform 0.15s;
+                    z-index: 100;
+                }
+                .back-home:hover {
+                    background: #b0b3b8;
+                    color: #0a1628;
+                    border: 2px solid #ffd700;
+                    transform: translateY(-2px) scale(1.03);
+                }
+        body {
+            font-family: 'Arial', 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(to bottom, #0a1628, #1a2844);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #fff;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(20, 28, 48, 0.98);
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+            padding: 32px 24px 24px 24px;
+        }
+        h1 {
+            text-align: center;
+            color: #ffd700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .instructions {
+            text-align: center;
+            margin-bottom: 24px;
+            color: #e0e0e0;
+        }
+        .wordsearch-wrapper {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            gap: 32px;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        .clues {
+            max-width: 420px;
+            min-width: 320px;
+            margin: 0;
+            background: none;
+            border-radius: 10px;
+            padding: 0;
+            box-shadow: none;
+            order: 1;
+        }
+        .clue {
+            margin: 8px 0;
+            padding: 12px 16px;
+            background: #d3d6db;
+            border-radius: 8px;
+            font-size: 1em;
+            color: #111;
+            font-weight: 500;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            border: 1.5px solid #8a8d91;
+            transition: background 0.2s, color 0.2s, border 0.2s;
+            cursor: pointer;
+        }
+        .clue.found {
+            background: #aaa;
+            color: #111;
+            border: 1.5px solid #b0ffb0;
+            text-decoration: line-through;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(20, 36px);
+            grid-template-rows: repeat(20, 36px);
+            gap: 2px;
+            background: #1a2844;
+            border-radius: 8px;
+            padding: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+            order: 2;
+        }
+        .cell {
+            width: 36px;
+            height: 36px;
+            background: #d3d6dd;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            user-select: none;
+            color: #111;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.10);
+            transition: background 0.2s, color 0.2s;
+        }
+        .cell.selected {
+            background: #c41e3a;
+            color: #fff;
+        }
+        .cell.found {
+            background: #4caf50;
+            color: #fff;
+        }
+        @media (max-width: 900px) {
+            .wordsearch-wrapper {
+                flex-direction: column;
+                align-items: center;
+            }
+            .clues {
+                max-width: 100%;
+                min-width: 0;
+                margin-bottom: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="xmas-games-index.html" class="back-home">← Back To Home</a>
+    <div class="container">
+        <h1>🎄 Training Wordsearch 🎄</h1>
+        <div class="instructions">
+            Find the training words in the grid!<br>
+            Select the word in the grid that matches each clue below.
+        </div>
+        <div class="wordsearch-wrapper">
+            <div class="clues" id="cluesList"></div>
+            <div class="grid" id="wordsearchGrid"></div>
+        </div>
+    </div>
+    <script src="training-wordsearch.js"></script>
+</body>
+</html>
