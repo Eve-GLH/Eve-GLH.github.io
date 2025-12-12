@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christmas Lights Training Quiz</title>
+    <style>
+                .back-home {
+                    position: absolute;
+                    top: 24px;
+                    left: 32px;
+                    background: #d3d6db;
+                    color: #111;
+                    font-weight: 600;
+                    font-size: 1.05em;
+                    padding: 10px 22px 10px 16px;
+                    border-radius: 8px;
+                    text-decoration: none;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+                    border: 2px solid #b0b3b8;
+                    transition: background 0.2s, color 0.2s, border 0.2s, transform 0.15s;
+                    z-index: 100;
+                }
+                .back-home:hover {
+                    background: #b0b3b8;
+                    color: #0a1628;
+                    border: 2px solid #ffd700;
+                    transform: translateY(-2px) scale(1.03);
+                }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #0a1628, #1a2844);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #ffd700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .instructions {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 1.2em;
+            color: #e0e0e0;
+        }
+
+        .wire-container {
+            position: relative;
+            height: 60px;
+            margin: 0 auto 0;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .wire {
+            position: absolute;
+            width: 100%;
+            height: 50px;
+            bottom: 0;
+            left: 0;
+        }
+
+        .wire svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .sockets-container {
+            position: relative;
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 80px;
+        }
+
+        .socket {
+            position: relative;
+            width: 140px;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .socket-label {
+            position: absolute;
+            top: -90px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.9em;
+            color: #b0b0b0;
+            font-weight: bold;
+        }
+
+        .socket-slot {
+            width: 100px;
+            height: 120px;
+            margin: 0 auto;
+            border: 3px dashed #555;
+            border-radius: 50% 50% 0 0;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .socket-slot::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 50px;
+            background: #2d5016;
+            z-index: 5;
+        }
+
+        .socket-slot.drag-over {
+            border-color: #ffd700;
+            background: rgba(255, 215, 0, 0.2);
+        }
+
+        .bulbs-container {
+            position: relative;
+            max-width: 600px;
+            margin: 40px auto 0;
+            padding: 30px;
+            background: linear-gradient(135deg, #8b7355 0%, #6d5843 100%);
+            border: 3px solid #5d4a37;
+            border-radius: 10px;
+            box-shadow: 
+                inset 0 2px 10px rgba(0, 0, 0, 0.3),
+                0 5px 15px rgba(0, 0, 0, 0.4);
+            min-height: 200px;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            gap: 15px;
+        }
+
+        .bulbs-container::before {
+            content: '🎄 CHRISTMAS LIGHTS 🎄';
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #8b7355;
+            padding: 5px 20px;
+            border: 2px solid #5d4a37;
+            border-radius: 5px;
+            font-size: 0.9em;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .bulbs-container::after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            pointer-events: none;
+        }
+
+        .bulb {
+            width: 100px;
+            height: 120px;
+            position: relative;
+            cursor: move;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .bulbs-container .bulb {
+            transform: rotate(var(--rotation, 0deg)) translateY(var(--offset, 0px));
+        }
+
+        .bulbs-container .bulb:nth-child(1) {
+            --rotation: -12deg;
+            --offset: 8px;
+        }
+
+        .bulbs-container .bulb:nth-child(2) {
+            --rotation: 15deg;
+            --offset: -5px;
+        }
+
+        .bulbs-container .bulb:nth-child(3) {
+            --rotation: -8deg;
+            --offset: 12px;
+        }
+
+        .bulbs-container .bulb:nth-child(4) {
+            --rotation: 10deg;
+            --offset: -8px;
+        }
+
+        .bulbs-container .bulb:nth-child(5) {
+            --rotation: -15deg;
+            --offset: 5px;
+        }
+
+        .bulbs-container .bulb:nth-child(6) {
+            --rotation: 8deg;
+            --offset: -10px;
+        }
+
+        .socket-slot .bulb {
+            transform: rotate(0deg) translateY(0);
+        }
+
+        .bulb:hover {
+            transform: scale(1.05) rotate(var(--rotation, 0deg)) translateY(var(--offset, 0px));
+        }
+
+        .socket-slot .bulb:hover {
+            transform: scale(1.05) rotate(0deg) translateY(0);
+        }
+
+        .bulb.dragging {
+            opacity: 0.5;
+        }
+
+        .bulb-shape {
+            width: 70px;
+            height: 90px;
+            margin: 0 auto;
+            border-radius: 45% 45% 50% 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            text-align: center;
+            font-size: 0.75em;
+            font-weight: bold;
+            color: #333;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            position: relative;
+            background: linear-gradient(135deg, #c41e3a 0%, #8b1528 100%);
+        }
+
+        .bulb[data-color="red"] .bulb-shape {
+            background: linear-gradient(135deg, #c41e3a 0%, #8b1528 100%);
+        }
+
+        .bulb[data-color="green"] .bulb-shape {
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+        }
+
+        .bulb[data-color="blue"] .bulb-shape {
+            background: linear-gradient(135deg, #1976d2 0%, #0d47a1 100%);
+        }
+
+        .bulb[data-color="orange"] .bulb-shape {
+            background: linear-gradient(135deg, #f57c00 0%, #e65100 100%);
+        }
+
+        .bulb[data-color="purple"] .bulb-shape {
+            background: linear-gradient(135deg, #ab47bc 0%, #7b1fa2 100%);
+        }
+
+        .bulb[data-color="yellow"] .bulb-shape {
+            background: linear-gradient(135deg, #ffd700 0%, #f9a825 100%);
+        }
+
+        .bulb-shape::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 15px;
+            background: #666;
+            border-radius: 3px;
+        }
+
+        .bulb-text {
+            position: relative;
+            z-index: 1;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .bulb.lit .bulb-shape {
+            animation: glow 1s ease-in-out infinite alternate;
+            box-shadow: 0 0 20px currentColor, 0 0 40px currentColor;
+        }
+
+        .bulb.lit[data-color="red"] .bulb-shape {
+            background: linear-gradient(135deg, #ff4d6d 0%, #ff1744 100%);
+            color: #ff1744;
+        }
+
+        .bulb.lit[data-color="green"] .bulb-shape {
+            background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
+            color: #4caf50;
+        }
+
+        .bulb.lit[data-color="blue"] .bulb-shape {
+            background: linear-gradient(135deg, #2196f3 0%, #1565c0 100%);
+            color: #2196f3;
+        }
+
+        .bulb.lit[data-color="orange"] .bulb-shape {
+            background: linear-gradient(135deg, #ffa726 0%, #f57c00 100%);
+            color: #ffa726;
+        }
+
+        .bulb.lit[data-color="purple"] .bulb-shape {
+            background: linear-gradient(135deg, #ab47bc 0%, #7b1fa2 100%);
+            color: #ab47bc;
+        }
+
+        .bulb.lit[data-color="yellow"] .bulb-shape {
+            background: linear-gradient(135deg, #ffeb3b 0%, #f9a825 100%);
+            color: #ffeb3b;
+        }
+
+        @keyframes glow {
+            from {
+                filter: brightness(1);
+            }
+            to {
+                filter: brightness(1.4);
+            }
+        }
+
+        .message {
+            text-align: center;
+            font-size: 1.5em;
+            margin-top: 40px;
+            min-height: 40px;
+            color: #ffd700;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .message.success {
+            animation: celebrate 0.5s ease-in-out;
+        }
+
+        @keyframes celebrate {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .reset-button {
+            display: block;
+            margin: 10px auto 30px;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            background: linear-gradient(135deg, #c41e3a 0%, #8b1528 100%);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .reset-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .reset-button:active {
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .sockets-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+            }
+
+            .socket {
+                width: 200px;
+            }
+
+            .bulbs-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="xmas-games-index.html" class="back-home">← Back To Home</a>
+    <div class="container">
+        <h1>🎄 Christmas Lights Training Quiz 🎄</h1>
+        <div class="instructions">
+            Drag the bulbs to the correct sockets to light up the string!<br>
+            Put the steps in the right order: 1 → 2 → 3 → 4 → 5 → 6
+        </div>
+
+        <div class="wire-container">
+            <div class="wire">
+                <svg viewBox="0 0 1200 100" preserveAspectRatio="none">
+                    <path d="M 0 50 Q 100 30, 200 50 T 400 50 T 600 50 T 800 50 T 1000 50 T 1200 50" 
+                          stroke="#2d5016" 
+                          stroke-width="6" 
+                          fill="none"
+                          stroke-linecap="round"/>
+                </svg>
+            </div>
+        </div>
+
+        <div class="sockets-container">
+            <div class="socket">
+                <div class="socket-label">Step 1</div>
+                <div class="socket-slot" data-position="0"></div>
+            </div>
+            <div class="socket">
+                <div class="socket-label">Step 2</div>
+                <div class="socket-slot" data-position="1"></div>
+            </div>
+            <div class="socket">
+                <div class="socket-label">Step 3</div>
+                <div class="socket-slot" data-position="2"></div>
+            </div>
+            <div class="socket">
+                <div class="socket-label">Step 4</div>
+                <div class="socket-slot" data-position="3"></div>
+            </div>
+            <div class="socket">
+                <div class="socket-label">Step 5</div>
+                <div class="socket-slot" data-position="4"></div>
+            </div>
+            <div class="socket">
+                <div class="socket-label">Step 6</div>
+                <div class="socket-slot" data-position="5"></div>
+            </div>
+        </div>
+
+        <div class="bulbs-container" id="bulbsContainer">
+            <!-- Bulbs will be added here by JavaScript -->
+        </div>
+
+        <div class="message" id="message"></div>
+
+        <button class="reset-button" onclick="resetGame()">🔄 Reset Game</button>
+    </div>
+
+    <script>
+        const correctOrder = [
+            "Customer books",
+            "Operator organises drivers",
+            "Operator assigns routes",
+            "Products delivered",
+            "Party time!",
+            "Products collected"
+        ];
+
+        let currentOrder = Array(6).fill(null);
+        let draggedBulb = null;
+
+        function shuffleArray(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        function initGame() {
+            const bulbsContainer = document.getElementById('bulbsContainer');
+            bulbsContainer.innerHTML = '';
+            currentOrder = Array(6).fill(null);
+            
+            const shuffled = shuffleArray(correctOrder);
+            const colors = ['red', 'green', 'blue', 'orange', 'purple', 'yellow'];
+            
+            shuffled.forEach((text, index) => {
+                const bulb = document.createElement('div');
+                bulb.className = 'bulb';
+                bulb.draggable = true;
+                bulb.dataset.text = text;
+                bulb.dataset.correctIndex = correctOrder.indexOf(text);
+                bulb.dataset.color = colors[correctOrder.indexOf(text)];
+                
+                bulb.innerHTML = `
+                    <div class="bulb-shape">
+                        <div class="bulb-text">${text}</div>
+                    </div>
+                `;
+                
+                bulb.addEventListener('dragstart', handleDragStart);
+                bulb.addEventListener('dragend', handleDragEnd);
+                
+                bulbsContainer.appendChild(bulb);
+            });
+
+            document.getElementById('message').textContent = '';
+            
+            // Setup socket slots
+            document.querySelectorAll('.socket-slot').forEach(slot => {
+                slot.addEventListener('dragover', handleDragOver);
+                slot.addEventListener('drop', handleDrop);
+                slot.addEventListener('dragleave', handleDragLeave);
+            });
+        }
+
+        function handleDragStart(e) {
+            draggedBulb = this;
+            this.classList.add('dragging');
+            e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData('text/html', this.innerHTML);
+        }
+
+        function handleDragEnd(e) {
+            this.classList.remove('dragging');
+            document.querySelectorAll('.socket-slot').forEach(slot => {
+                slot.classList.remove('drag-over');
+            });
+        }
+
+        function handleDragOver(e) {
+            if (e.preventDefault) {
+                e.preventDefault();
+            }
+            e.dataTransfer.dropEffect = 'move';
+            this.classList.add('drag-over');
+            return false;
+        }
+
+        function handleDragLeave(e) {
+            this.classList.remove('drag-over');
+        }
+
+        function handleDrop(e) {
+            if (e.stopPropagation) {
+                e.stopPropagation();
+            }
+            e.preventDefault();
+
+            this.classList.remove('drag-over');
+
+            if (draggedBulb) {
+                const position = parseInt(this.dataset.position);
+                const text = draggedBulb.dataset.text;
+                const correctIndex = parseInt(draggedBulb.dataset.correctIndex);
+
+                // Check if socket already has a bulb
+                const existingBulb = this.querySelector('.bulb');
+                if (existingBulb) {
+                    // Move existing bulb back to container
+                    const bulbsContainer = document.getElementById('bulbsContainer');
+                    bulbsContainer.appendChild(existingBulb);
+                    currentOrder[position] = null;
+                }
+
+                // Remove dragged bulb from its current location
+                if (draggedBulb.parentElement.classList.contains('socket-slot')) {
+                    const oldPosition = parseInt(draggedBulb.parentElement.dataset.position);
+                    currentOrder[oldPosition] = null;
+                }
+
+                // Place bulb in socket
+                this.appendChild(draggedBulb);
+                currentOrder[position] = text;
+                
+                draggedBulb.style.cursor = 'move';
+                draggedBulb.classList.remove('dragging');
+
+                checkOrder();
+            }
+
+            return false;
+        }
+
+        function checkOrder() {
+            // Check if all sockets are filled
+            if (currentOrder.some(item => item === null)) {
+                document.getElementById('message').textContent = 'Keep going...';
+                document.getElementById('message').className = 'message';
+                document.querySelectorAll('.bulb').forEach(bulb => {
+                    bulb.classList.remove('lit');
+                });
+                return;
+            }
+
+            // Check if order is correct
+            let isCorrect = true;
+            for (let i = 0; i < correctOrder.length; i++) {
+                if (currentOrder[i] !== correctOrder[i]) {
+                    isCorrect = false;
+                    break;
+                }
+            }
+
+            if (isCorrect) {
+                document.getElementById('message').textContent = '🎉 Perfect! The lights are on! 🎉';
+                document.getElementById('message').className = 'message success';
+                
+                // Light up all bulbs
+                document.querySelectorAll('.socket-slot .bulb').forEach(bulb => {
+                    bulb.classList.add('lit');
+                });
+            } else {
+                document.getElementById('message').textContent = 'Not quite right. Try again!';
+                document.getElementById('message').className = 'message';
+                
+                // Remove lit effect
+                document.querySelectorAll('.bulb').forEach(bulb => {
+                    bulb.classList.remove('lit');
+                });
+            }
+        }
+
+        function resetGame() {
+            initGame();
+        }
+
+        // Initialize game on load
+        initGame();
+    </script>
+</body>
+</html>
