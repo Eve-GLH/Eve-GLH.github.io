@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Which DNS Thing Is This?</title>
+  <link rel="stylesheet" href="dns-thing.css">
+</head>
+<body>
+  <main class="dns-game-container">
+    <h1>DNS Training Game</h1>
+    <h2>Which DNS Thing Is This?</h2>
+    <div id="progress"></div>
+    <div id="card" class="dns-card"></div>
+    <div class="dns-buttons">
+      <button class="dns-btn" data-answer="Nameservers">🟦 Nameservers</button>
+      <button class="dns-btn" data-answer="A Record">🟩 A Record</button>
+      <button class="dns-btn" data-answer="MX Record">🟨 MX Record</button>
+      <button class="dns-btn" data-answer="Not DNS">❌ Not DNS</button>
+    </div>
+    <div id="feedback" class="dns-feedback"></div>
+    <div class="dns-nav">
+      <button id="backBtn" class="dns-nav-btn">⬅ Back</button>
+      <button id="nextBtn" class="dns-nav-btn">Next ➡</button>
+    </div>
+    <div style="text-align:center; margin-top:18px;">
+      <button id="replayBtn" class="dns-nav-btn" style="display:none; min-width:140px;">🔄 Replay</button>
+    </div>
+  </main>
+  <script src="dns-thing.js"></script>
+</body>
+</html>
