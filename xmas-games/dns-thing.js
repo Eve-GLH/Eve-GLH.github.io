@@ -94,7 +94,7 @@ const replayBtn = document.getElementById('replayBtn');
 
 function showCard(idx) {
   if (idx >= dnsCards.length) {
-    cardDiv.innerHTML = `<div class="dns-end">Nice work 👏<br><br><strong>Score: ${score} / ${dnsCards.length}</strong><br><br>You've just reinforced the core DNS concepts we use every day.</div>`;
+    cardDiv.innerHTML = `<div class=\"dns-end\">Nice work 👏<br><br><strong>Score: ${score} / ${dnsCards.length}</strong><br><br>You've just reinforced the core DNS concepts we use every day.</div>`;
     progressDiv.textContent = '';
     btns.forEach(btn => btn.disabled = true);
     feedbackDiv.textContent = '';
@@ -102,6 +102,8 @@ function showCard(idx) {
     backBtn.disabled = false;
     nextBtn.disabled = true;
     replayBtn.style.display = 'inline-block';
+    const dispatchBtn = document.getElementById('dispatchBtn');
+    if (dispatchBtn) dispatchBtn.style.display = 'inline-block';
     return;
   }
   cardDiv.textContent = dnsCards[idx].prompt;
@@ -113,6 +115,8 @@ function showCard(idx) {
   backBtn.disabled = idx === 0;
   nextBtn.disabled = true;
   replayBtn.style.display = 'none';
+  const dispatchBtn = document.getElementById('dispatchBtn');
+  if (dispatchBtn) dispatchBtn.style.display = 'none';
 }
 
 btns.forEach(btn => {

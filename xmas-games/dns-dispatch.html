@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DNS Dispatch</title>
+  <link rel="stylesheet" href="dns-dispatch.css">
+</head>
+<body>
+  <a href="xmas-games-index.html" class="back-home">⬅ Back to Games</a>
+  <main class="dns-game-container">
+    <h1>DNS Dispatch</h1>
+    <h2>Handle the client request</h2>
+    <div id="dispatch-progress"></div>
+    <div id="dispatch-card" class="dns-card"></div>
+    <form id="dispatch-form" class="dispatch-form">
+      <div class="dispatch-options">
+        <label><input type="checkbox" name="action" value="nameservers"> Set BCN nameservers</label>
+        <label><input type="checkbox" name="action" value="a-records"> Set A records to 78.136.6.76</label>
+        <label><input type="checkbox" name="action" value="mx-records"> Change MX records</label>
+        <label><input type="checkbox" name="action" value="none"> No DNS changes needed</label>
+      </div>
+      <button type="submit" class="dns-btn dispatch-submit">Submit decision</button>
+    </form>
+    <div id="dispatch-feedback" class="dns-feedback"></div>
+    <div class="dns-nav">
+      <button id="dispatch-backBtn" class="dns-nav-btn">⬅ Back</button>
+      <button id="dispatch-nextBtn" class="dns-nav-btn">Next ➡</button>
+    </div>
+    <div style="text-align:center; margin-top:18px;">
+      <button id="dispatch-replayBtn" class="dns-nav-btn" style="display:none; min-width:140px;">🔄 Replay</button>
+      <a href="dns-thing.html" class="dns-nav-btn" style="display:none; min-width:140px;" id="dispatch-conceptBtn">Try concept game</a>
+    </div>
+  </main>
+  <script src="dns-dispatch.js"></script>
+</body>
+</html>
