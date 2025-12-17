@@ -1,3 +1,26 @@
+/* Back to home button */
+.back-home {
+  position: absolute;
+  top: 24px;
+  left: 32px;
+  background: #d3d6db;
+  color: #111;
+  font-weight: 600;
+  font-size: 1.05em;
+  padding: 10px 22px 10px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  border: 2px solid #b0b3b8;
+  transition: background 0.2s, color 0.2s, border 0.2s, transform 0.15s;
+  z-index: 100;
+}
+.back-home:hover {
+  background: #b0b3b8;
+  color: #0a1628;
+  border: 2px solid #ffd700;
+  transform: translateY(-2px) scale(1.03);
+}
 /* Navigation buttons */
 .dns-nav {
   display: flex;
