@@ -4,21 +4,147 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="styles.css" />
+        <style>
+            body {
+                background: var(--bg, #f8f9fa);
+                color: var(--fg, #222);
+                transition: background 0.3s, color 0.3s;
+            }
+            .main-content {
+                margin: 60px auto;
+                max-width: 600px;
+                background: var(--card-bg, #fff);
+                border-radius: 18px;
+                box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+                padding: 40px 32px 32px 32px;
+            }
+            .homepage-btn-list {
+                display: flex;
+                flex-direction: column;
+                gap: 18px;
+                align-items: stretch;
+                margin: 0;
+                padding: 0;
+            }
+            .homepage-btn-list li {
+                margin: 0;
+            }
+            .homepage-btn {
+                display: block;
+                width: 100%;
+                padding: 16px 0;
+                background: linear-gradient(90deg, #ffd1e3 0%, #ffe3f1 100%);
+                color: #b8005c !important;
+                font-size: 1.15em;
+                font-weight: 600;
+                border: none;
+                border-radius: 28px;
+                box-shadow: 0 2px 8px rgba(255, 0, 87, 0.07);
+                text-align: center;
+                text-decoration: none !important;
+                letter-spacing: 0.02em;
+                transition: background 0.2s, color 0.2s, transform 0.1s, box-shadow 0.2s;
+                cursor: pointer;
+                outline: none;
+            }
+            .homepage-btn:hover, .homepage-btn:focus {
+                background: linear-gradient(90deg, #ffe3f1 0%, #ffd1e3 100%);
+                color: #e80e6f !important;
+                transform: translateY(-2px) scale(1.03);
+                box-shadow: 0 4px 16px rgba(255, 0, 87, 0.12);
+                text-decoration: none !important;
+            }
+            .toggle-btn {
+                position: absolute;
+                top: 24px;
+                right: 32px;
+                background: var(--card-bg, #fff);
+                color: var(--fg, #222);
+                border: 1px solid #ccc;
+                border-radius: 20px;
+                padding: 8px 18px;
+                font-size: 1em;
+                cursor: pointer;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+                transition: background 0.3s, color 0.3s;
+                z-index: 10;
+            }
+            @media (max-width: 700px) {
+                .main-content {
+                    padding: 18px 4vw;
+                }
+                .toggle-btn {
+                    right: 10px;
+                    top: 10px;
+                }
+            }
+            body.dark {
+                --bg: #181a1b;
+                --fg: #f1f1f1;
+                --card-bg: #23272b;
+                --link: #7abaff;
+                --link-hover: #a3d8ff;
+            }
+            body.dark .homepage-btn {
+                background: linear-gradient(90deg, #4b223a 0%, #5a2d47 100%);
+                color: #ffe3f1 !important;
+                box-shadow: 0 2px 8px rgba(255, 0, 87, 0.13);
+            }
+            body.dark .homepage-btn:hover, body.dark .homepage-btn:focus {
+                background: linear-gradient(90deg, #5a2d47 0%, #4b223a 100%);
+                color: #ffd1e3 !important;
+                box-shadow: 0 4px 16px rgba(255, 0, 87, 0.22);
+            }
+        </style>
         <title>Eve Training Site</title>
     </head>
     <body>
+        <button class="toggle-btn" id="toggleMode" aria-label="Toggle light/dark mode">🌙 Dark Mode</button>
         <div class="outer-wrapper">
             <div class="container">
                 <div class="main-content">
-                    <p>This is where I do things that I need to learn.</p>
-                    <ul>
-                        <li><a href="/m2r/question-1.html">Map to relationship</a></li>
-                        <li><a href="/quickbooks/category.html">Quick Books</a></li>
-                        <li><a href="/invoice/invoice.html">Invoice</a></li>
-                        <li><a href="/call-listening/call-listening-index.html">Call Listening</a></li>
-                    </ul>
+                    <h1 class="text-center mb-4">Eve Training Site</h1>
+                    <p class="text-center">This is where I do things that I need to learn.</p>
+                    <div class="homepage-section">
+                        <h2>BCN Training Materials</h2>
+                        <ul class="homepage-btn-list">
+                            <li><a class="homepage-btn" href="/m2r/question-1.html">Map to Relationship</a></li>
+                            <li><a class="homepage-btn" href="/quickbooks/category.html">Quick Books</a></li>
+                            <li><a class="homepage-btn" href="/xmas-games/xmas-games-index.html">Xmas Games</a></li>
+                        </ul>
+                    </div>
+                    <div class="homepage-section">
+                        <h2>BCN Experiments</h2>
+                        <ul class="homepage-btn-list">
+                            <li><a class="homepage-btn" href="/call-listening/call-listening-index.html">Call Listening</a></li>
+                            <li><a class="homepage-btn" href="/invoice/invoice.html">Invoice</a></li>
+                        </ul>
+                    </div>
+                    <div class="homepage-section">
+                        <h2>Other Experiments</h2>
+                        <ul class="homepage-btn-list">
+                            <li><a class="homepage-btn" href="/calculator/index.html">Calculator</a></li>
+                            <li><a class="homepage-btn" href="/dice-roller/dice-roller.html">Dice Roller</a></li>
+                            <li><a class="homepage-btn" href="/times-tables/index.html">Times Tables</a></li>
+                            <li><a class="homepage-btn" href="/portfolio/index.html">Portfolio</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
+        <script>
+            // Light/Dark mode toggle
+            const btn = document.getElementById('toggleMode');
+            function setMode(dark) {
+                document.body.classList.toggle('dark', dark);
+                btn.textContent = dark ? '☀️ Light Mode' : '🌙 Dark Mode';
+                localStorage.setItem('darkMode', dark ? '1' : '0');
+            }
+            // On load, set mode from localStorage
+            const darkPref = localStorage.getItem('darkMode') === '1';
+            setMode(darkPref);
+            btn.onclick = () => setMode(!document.body.classList.contains('dark'));
+        </script>
     </body>
 </html>
