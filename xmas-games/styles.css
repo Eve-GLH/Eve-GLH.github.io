@@ -1,0 +1,265 @@
+#santa-shocked {
+  left: 16.67%;
+  transform: translate(-50%, -50%) translateX(-100vw);
+}
+#santa-shocked.right {
+  right: 16.67%;
+  left: auto;
+  transform: translate(50%, -50%) translateX(100vw);
+}
+#santa-shocked.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) translateX(0);
+}
+#santa-shocked.active.right {
+  right: 16.67%;
+  left: auto;
+  visibility: visible;
+  transform: translate(50%, -50%) translateX(0);
+}
+#santa-shocked-right {
+  right: 16.67%;
+  transform: translate(50%, -50%) translateX(100vw);
+}
+#santa-shocked-right.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(50%, -50%) translateX(0);
+}
+#santa-thumbs-up, #santa-great, #santa-cool {
+  right: 16.67%;
+  transform: translate(50%, -50%) translateX(100vw);
+}
+#santa-thumbs-up.active, #santa-great.active, #santa-cool.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(50%, -50%) translateX(0);
+}
+#santa-shocked img, #santa-shocked-right img, #santa-thumbs-up img, #santa-great img, #santa-cool img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 12px;
+  object-fit: cover;
+  object-position: center bottom;
+}
+/* Santa images for scenario/feedback */
+ .santa-img {
+  position: fixed;
+  top: 50%;
+  z-index: 10;
+  width: 700px;
+  max-width: 40vw;
+  height: auto;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s, transform 0.5s cubic-bezier(.77,0,.18,1);
+  border: 8px solid #c62828;
+  border-radius: 20px;
+  background: transparent;
+  box-shadow: 
+    0 0 0 4px #388e3c,
+    0 0 0 8px #ffd700,
+    0 8px 32px rgba(0,0,0,0.3),
+    inset 0 2px 8px rgba(255,255,255,0.5);
+  padding: 12px 12px 0 12px;
+}
+
+body {
+  background: url('images/santas-workshop-bg.jpg') center center/cover no-repeat fixed, linear-gradient(120deg, #e0f7fa 0%, #fff8e1 100%);
+  font-family: 'Segoe UI', 'Arial', sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  color: #2d2d2d;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 20px 0;
+}
+#game-container {
+  max-width: 420px;
+  margin: 20px;
+  background: rgba(255,255,255,0.97);
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+  padding: 32px 20px 24px 20px;
+  position: relative;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: url('images/santas-workshop-bg.jpg') center center/cover no-repeat fixed, linear-gradient(120deg, #1a237e 0%, #0d47a1 100%);
+    color: #e8eaf6;
+  }
+  
+  #game-container {
+    background: rgba(25, 25, 35, 0.95);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+  }
+  
+  #card {
+    background: #2d2d3d !important;
+    color: #e8eaf6 !important;
+  }
+  
+  header h1 {
+    color: #ef5350;
+  }
+  
+  #feedback {
+    color: #66bb6a;
+  }
+  
+  #score {
+    color: #42a5f5;
+  }
+  
+  .choice-btn {
+    background: #d32f2f;
+    color: #fff;
+  }
+  
+  .choice-btn:hover {
+    background: #9a0007;
+  }
+  
+  #restart-btn, #arcade-btn {
+    background: #388e3c;
+    color: #fff;
+  }
+  
+  #restart-btn:hover, #arcade-btn:hover {
+    background: #1b5e20;
+  }
+  
+  #progress-container {
+    background: #1a1a1a;
+  }
+}
+header h1 {
+  text-align: center;
+  color: #c62828;
+  margin-bottom: 12px;
+  font-size: 2rem;
+  letter-spacing: 1px;
+}
+#card {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 24px 16px 16px 16px;
+  margin-bottom: 18px;
+  min-height: 180px;
+  box-shadow: 0 2px 8px rgba(44, 62, 80, 0.07);
+}
+#progress-container {
+  width: 100%;
+  height: 12px;
+  background: #333;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
+}
+#progress-bar {
+  width: 0%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    45deg,
+    #dc2626 0px,
+    #dc2626 8px,
+    #ffffff 8px,
+    #ffffff 16px
+  );
+  border-radius: 6px;
+  transition: width 0.5s ease-in-out;
+  box-shadow: 0 1px 2px rgba(220, 38, 38, 0.3);
+}
+#scenario {
+  font-size: 1.1rem;
+  margin-bottom: 18px;
+  text-align: center;
+}
+/* Choices remain column, nav row is flex */
+#choices {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+#nav-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 18px;
+}
+
+#nav-row .choice-btn {
+  min-width: 110px;
+  margin: 0 2px;
+}
+.choice-btn {
+  background: #e53935;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 22px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+.choice-btn:hover {
+  background: #b71c1c;
+}
+
+/* Multiple choice buttons only */
+.mc-btn {
+  width: 100%;
+  max-width: 340px;
+  min-width: 180px;
+  font-size: 1.18rem;
+  border-radius: 18px;
+  padding: 14px 0;
+  margin: 0 auto;
+  display: block;
+}
+#feedback {
+  min-height: 32px;
+  text-align: center;
+  color: #388e3c;
+  font-weight: 500;
+  margin-top: 10px;
+  font-size: 1rem;
+  transition: opacity 0.3s;
+}
+#score {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 1.1rem;
+  color: #1565c0;
+}
+footer {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 18px;
+}
+#restart-btn, #arcade-btn {
+  background: #43a047;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-size: 1rem;
+  cursor: pointer;
+  display: inline-block;
+  margin-top: 8px;
+  transition: background 0.2s;
+}
+#restart-btn:hover, #arcade-btn:hover {
+  background: #2e7031;
+}

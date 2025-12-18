@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎄 Santa’s Satellite Network</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="js-error-message" style="display:block; color:#b71c1c; background:#fff3f3; border:2px solid #b71c1c; border-radius:12px; padding:18px; max-width:420px; margin:40px auto 0 auto; text-align:center; font-size:1.2rem; z-index:1000; position:relative;">⚠️ Error: The game could not load. Please check your browser console for details.</div>
+  <div id="back-to-home" style="position:fixed; top:20px; left:20px; z-index:1001;">
+    <a href="xmas-games-index.html" style="text-decoration:none; color:#fff; background:#c62828; padding:12px 18px; border-radius:8px; font-size:1rem; box-shadow:0 2px 8px rgba(0,0,0,0.2); display:inline-block;">🏠 Back to Games</a>
+  </div>
+  <div id="game-container">
+    <div id="santa-shocked" class="santa-img"><img src="images/santa-shocked.png" alt="Santa shocked" /></div>
+    <div id="santa-shocked-right" class="santa-img"><img src="images/santa-shocked.png" alt="Santa shocked" /></div>
+    <div id="santa-thumbs-up" class="santa-img"><img src="images/santa-thumbs-up.png" alt="Santa thumbs up" /></div>
+    <div id="santa-great" class="santa-img"><img src="images/santa-great.png" alt="Santa great" /></div>
+    <div id="santa-cool" class="santa-img"><img src="images/santa-cool.png" alt="Santa cool" /></div>
+    <header>
+      <h1 id="game-title">🎄 Santa’s Satellite Network</h1>
+    </header>
+    <main>
+      <div id="card">
+        <div id="scenario"></div>
+        <div id="choices"></div>
+        <div id="feedback"></div>
+      </div>
+      <div id="progress-container">
+        <div id="progress-bar"></div>
+      </div>
+      <div id="score"></div>
+    </main>
+    <footer>
+      <button id="restart-btn" style="display:none;">🔁 Play Again</button>
+      <button id="arcade-btn" style="display:none;">🏠 Return to Christmas Arcade</button>
+    </footer>
+  </div>
+  <script src="main.js"></script>
+</body>
+</html>
