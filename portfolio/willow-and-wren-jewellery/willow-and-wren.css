@@ -1,0 +1,256 @@
+.Cormorant {
+  font-family: "Cormorant Garamond", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+.OpenSans {
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}
+h1,
+h2,
+h3 {
+  font-family: "Cormorant Garamond", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+header {
+  border-bottom: 1px solid #E6E6E6;
+  position: sticky;
+  top: 0;
+}
+header .navbar {
+  padding: 1rem 0;
+  font-family: "Cormorant Garamond", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+header .navbar__logo img {
+  max-width: 150px;
+}
+header .navbar__links {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+header .navbar__links li {
+  position: relative;
+}
+header .navbar__links li:not(:last-child) {
+  margin-right: 2rem;
+}
+header .navbar__links li a {
+  text-decoration: none;
+  color: #FFF;
+  padding: 0.5rem 0;
+  transition: color 0.3s;
+}
+header .navbar__links li a:hover {
+  color: #C4A75D;
+}
+header .navbar__links li .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #FFF;
+  border: 1px solid #E6E6E6;
+  z-index: 1000;
+}
+header .navbar__links li .dropdown-menu a {
+  display: block;
+  padding: 0.5rem 1rem;
+  white-space: nowrap;
+}
+header .navbar__links li .dropdown-menu a:hover {
+  background-color: #E6E6E6;
+}
+header .navbar__links li:hover .dropdown-menu {
+  display: block;
+}
+.hero {
+  background-image: linear-gradient(rgba(30, 30, 30, 0.5), rgba(30, 30, 30, 0.99)), url("luxury-jewellery-display.jpg");
+  background-size: cover;
+  aspect-ratio: 16 / 9;
+  position: relative;
+}
+.hero__content {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  top: 45%;
+  font-family: "Cormorant Garamond", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+.hero__content h1 {
+  font-size: 3.5rem;
+  color: #FFF;
+  margin-bottom: 1rem;
+}
+.hero__content p {
+  font-size: 1.5rem;
+  color: #FFF;
+}
+.services {
+  background: #111;
+  padding: 60px 0;
+}
+.services__text {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #E6E6E6;
+}
+.services__text h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #C4A75D;
+}
+.services__text p {
+  font-size: 1.25rem;
+}
+.services__grid {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.services__grid .service-card {
+  background: #FFF;
+  border: 1px solid #E6E6E6;
+  padding: 1rem;
+  text-align: center;
+  width: calc(33.333% - 1rem);
+  margin-bottom: 1rem;
+}
+.services__grid .service-card img {
+  max-width: 100%;
+  border-bottom: 1px solid #E6E6E6;
+  margin-bottom: 1rem;
+}
+.services__grid .service-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.services__grid .service-card p {
+  font-size: 1.25rem;
+  color: #C4A75D;
+}
+.products {
+  background-color: #E6E6E6;
+  padding: 60px 0;
+  text-align: center;
+}
+.products h2 {
+  font-weight: 700;
+  font-size: 2.5rem;
+}
+.products__grid {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+.products__grid .product-card {
+  background: #FFF;
+  border: 1px solid #E6E6E6;
+  padding: 1rem;
+  text-align: center;
+  width: calc(33.333% - 1rem);
+  margin-bottom: 1rem;
+}
+.products__grid .product-card img {
+  max-width: 100%;
+  border-bottom: 1px solid #E6E6E6;
+  margin-bottom: 1rem;
+}
+.products__grid .product-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.products__grid .product-card p {
+  font-size: 1.25rem;
+  color: #C4A75D;
+}
+.about {
+  padding: 60px 0;
+  text-align: center;
+}
+.footer {
+  background-color: #C4A75D;
+}
+.footer__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 30px 0;
+}
+.footer__logo {
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .footer__logo {
+    max-width: 25%;
+  }
+}
+.footer__logo img {
+  max-width: 250px;
+}
+.footer__col {
+  flex: 1;
+  margin-right: 2rem;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+}
+@media (min-width: 768px) {
+  .footer__col {
+    max-width: 24%;
+  }
+}
+.footer__col:last-child {
+  margin-right: 0;
+}
+.footer__col h3 {
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-family: "Cormorant Garamond", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  color: #E6E6E6;
+  font-weight: 700;
+}
+.footer__col a {
+  text-decoration: none;
+  color: #FFF;
+  padding: 0.5rem 0;
+  transition: color 0.3s;
+}
+.footer__col a:hover {
+  color: #e6e6e6;
+}
+.footer__bottom {
+  text-align: center;
+  padding: 1rem 0;
+  background: #111;
+}
+.footer__bottom a {
+  text-decoration: none;
+  color: #FFF;
+  transition: color 0.3s;
+}
+.footer__bottom a:hover {
+  color: #C4A75D;
+}
