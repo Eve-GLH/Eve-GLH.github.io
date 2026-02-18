@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Route Planner: First Day Live</title>
+    <link rel="stylesheet" href="route-planner.css">
+</head>
+<body>
+    <a href="xmas-games-index.html" class="back-home">⬅ Back to Games</a>
+    
+    <!-- Game Container -->
+    <div class="game-container">
+        <!-- Top Progress Bar -->
+        <div class="top-bar">
+            <div class="progress-section">
+                <div class="shift-progress">
+                    <span class="progress-label">Shift Progress</span>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="shiftProgress"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="confidence-section">
+                <span class="confidence-label">Confidence</span>
+                <div class="confidence-meter">
+                    <div class="confidence-fill" id="confidenceFill"></div>
+                    <span class="confidence-value" id="confidenceValue">50</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Game Area -->
+        <div class="main-game-area">
+            <!-- Left Panel: Incoming Calls -->
+            <div class="call-panel">
+                <div class="call-header">
+                    <div class="call-indicator" id="callIndicator">📞</div>
+                    <span class="call-status" id="callStatus">Incoming Call</span>
+                </div>
+                <div class="call-content" id="callContent">
+                    <div class="caller-info">
+                        <div class="caller-avatar">👤</div>
+                        <div class="caller-details">
+                            <div class="caller-name">Customer</div>
+                            <div class="call-type">General Inquiry</div>
+                        </div>
+                    </div>
+                    <div class="call-message" id="callMessage">
+                        "Hi, I just want to check what's booked in for tomorrow."
+                    </div>
+                    <div class="call-prompt" id="callPrompt">
+                        Click the correct tool to help this customer:
+                    </div>
+                    <div class="call-actions">
+                        <button class="skip-btn" id="skipBtn" onclick="skipQuestion()">⏭️ Skip (-5 Confidence)</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel: Mock Interface -->
+            <div class="interface-panel">
+                <div class="interface-header">Route Planner Interface</div>
+                
+                <!-- Mock Header -->
+                <div class="mock-header" id="mockHeader">
+                    <div class="date-nav clickable-tool" data-tool="calendar">
+                        <button class="nav-arrow">‹</button>
+                        <span class="current-date">Mon, 01 Dec 25</span>
+                        <button class="nav-arrow">›</button>
+                    </div>
+                    <div class="header-buttons">
+                        <button class="header-btn items-out">📦 Items Out</button>
+                        <button class="header-btn items-in">📥 Items In</button>
+                        <button class="header-btn save-btn clickable-tool" data-tool="save">💾 Save</button>
+                    </div>
+                    <div class="header-icons">
+                        <div class="header-icon clickable-tool" data-tool="vehicles">🚐</div>
+                        <div class="header-icon">👤</div>
+                        <div class="header-icon clickable-tool" data-tool="search">🔍</div>
+                        <div class="header-icon">💬</div>
+                        <div class="header-icon">❓</div>
+                        <div class="header-icon clickable-tool" data-tool="notifications">
+                            🔔
+                            <span class="notification-badge" id="notificationBadge" style="display: none;">1</span>
+                        </div>
+                        <div class="header-icon">⚙️</div>
+                    </div>
+                </div>
+
+                <!-- Interactive Content Area -->
+                <div class="interface-content" id="interfaceContent">
+                    <!-- Unassigned Jobs Section -->
+                    <div class="mock-section unassigned-section" id="unassignedSection">
+                        <div class="section-header">
+                            <div class="section-title-area">
+                                <span class="dropdown-arrow">▼</span>
+                                <span class="section-title">Unassigned Jobs</span>
+                                <div class="search-icon clickable-tool" data-tool="search">🔍</div>
+                            </div>
+                            <div class="section-controls">
+                                <button class="control-btn clickable-tool" data-tool="auto-assign">Auto Assign</button>
+                                <div class="sort-controls">
+                                    <span class="sort-btn">🔼</span>
+                                    <span class="sort-btn">🔽</span>
+                                    <span class="sort-btn">🎯</span>
+                                </div>
+                                <span class="balance-info">Today's Balance <span class="balance-amount clickable-tool" data-tool="balance">£617.40</span></span>
+                                <div class="view-controls">
+                                    <span class="view-btn">🔧</span>
+                                    <span class="view-btn clickable-tool" data-tool="full-screen">⛶</span>
+                                    <span class="view-btn">≡</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="jobs-table">
+                            <div class="table-header">
+                                <span class="col-id">ID</span>
+                                <span class="col-name">NAME</span>
+                                <span class="col-tel">TEL</span>
+                                <span class="col-address">ADDRESS</span>
+                                <span class="col-items">ITEMS</span>
+                                <span class="col-surface">SURFACE</span>
+                                <span class="col-type">TYPE</span>
+                                <span class="col-time">TIME</span>
+                                <span class="col-actions">ACTIONS</span>
+                            </div>
+                            <div class="job-row clickable-tool" data-tool="unassigned-job" data-job="28-11">
+                                <span class="job-id">28-11</span>
+                                <span class="job-name">Laurie Potts</span>
+                                <span class="job-tel">07000000000</span>
+                                <span class="job-address">OL6 7FU</span>
+                                <span class="job-items">7</span>
+                                <span class="job-surface">I/H</span>
+                                <span class="job-type">🔽</span>
+                                <span class="job-time">10:00 am</span>
+                                <span class="job-actions">
+                                    <span class="action-icon">🕐</span>
+                                    <span class="action-icon">ℹ️</span>
+                                    <span class="action-icon">💬</span>
+                                    <span class="action-icon">🎯</span>
+                                    <span class="action-icon">⚙️</span>
+                                    <span class="action-icon">➕</span>
+                                </span>
+                            </div>
+                            <div class="job-row" data-job="30-16">
+                                <span class="job-id">30-16</span>
+                                <span class="job-name">Miss Dino Saur</span>
+                                <span class="job-tel">01706249004</span>
+                                <span class="job-address">OL2 3BP</span>
+                                <span class="job-items">1</span>
+                                <span class="job-surface">O/G</span>
+                                <span class="job-type">🔽</span>
+                                <span class="job-time">10:00 am</span>
+                                <span class="job-actions">
+                                    <span class="action-icon">🕐</span>
+                                    <span class="action-icon">ℹ️</span>
+                                    <span class="action-icon">💬</span>
+                                    <span class="action-icon">🎯</span>
+                                    <span class="action-icon">⚙️</span>
+                                    <span class="action-icon">➕</span>
+                                </span>
+                            </div>
+                            <div class="job-row" data-job="27-9">
+                                <span class="job-id">27-9</span>
+                                <span class="job-name">Elaine Hines</span>
+                                <span class="job-tel">07000000000</span>
+                                <span class="job-address">M40 5GH</span>
+                                <span class="job-items">4</span>
+                                <span class="job-surface">--</span>
+                                <span class="job-type">🔽</span>
+                                <span class="job-time">12:00 pm</span>
+                                <span class="job-actions">
+                                    <span class="action-icon">🕐</span>
+                                    <span class="action-icon">ℹ️</span>
+                                    <span class="action-icon">💬</span>
+                                    <span class="action-icon">🎯</span>
+                                    <span class="action-icon">⚙️</span>
+                                    <span class="action-icon">➕</span>
+                                </span>
+                            </div>
+                            <div class="job-row" data-job="26-13">
+                                <span class="job-id">26-13</span>
+                                <span class="job-name">Lewis Bailey</span>
+                                <span class="job-tel">07000000000</span>
+                                <span class="job-address">OL1 4BY</span>
+                                <span class="job-items">1</span>
+                                <span class="job-surface">--</span>
+                                <span class="job-type">🔼</span>
+                                <span class="job-time green-time">03:00 pm</span>
+                                <span class="job-actions">
+                                    <span class="action-icon">🕐</span>
+                                    <span class="action-icon">ℹ️</span>
+                                    <span class="action-icon">💬</span>
+                                    <span class="action-icon">🎯</span>
+                                    <span class="action-icon">⚙️</span>
+                                    <span class="action-icon">➕</span>
+                                </span>
+                            </div>
+                            <div class="job-row" data-job="30-15">
+                                <span class="job-id">30-15</span>
+                                <span class="job-name">Miss Dino Saur</span>
+                                <span class="job-tel">01706249004</span>
+                                <span class="job-address">OL2 3BP</span>
+                                <span class="job-items">1</span>
+                                <span class="job-surface">O/G</span>
+                                <span class="job-type">🔼</span>
+                                <span class="job-time green-time">03:00 pm</span>
+                                <span class="job-actions">
+                                    <span class="action-icon">🕐</span>
+                                    <span class="action-icon">ℹ️</span>
+                                    <span class="action-icon">💬</span>
+                                    <span class="action-icon">🎯</span>
+                                    <span class="action-icon">⚙️</span>
+                                    <span class="action-icon">➕</span>
+                                </span>
+                            </div>
+                            <div class="job-row" data-job="27-10">
+                                <span class="job-id">27-10</span>
+                                <span class="job-name">Elaine Hines</span>
+                                <span class="job-tel">07000000000</span>
+                                <span class="job-address">M40 5GH</span>
+                                <span class="job-items">4</span>
+                                <span class="job-surface">--</span>
+                                <span class="job-type">🔼</span>
+                                <span class="job-time green-time">05:30 pm</span>
+                                <span class="job-actions">
+                                    <span class="action-icon">🕐</span>
+                                    <span class="action-icon">ℹ️</span>
+                                    <span class="action-icon">💬</span>
+                                    <span class="action-icon">🎯</span>
+                                    <span class="action-icon">⚙️</span>
+                                    <span class="action-icon">➕</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="vehicle-assignments">
+                            <div class="vehicle-row">
+                                <span class="vehicle-icon">⚙️</span>
+                                <span class="vehicle-label">Van 1</span>
+                                <span class="vehicle-controls">
+                                    <span class="control-icon">E..</span>
+                                    <span class="control-icon">📋</span>
+                                </span>
+                            </div>
+                            <div class="vehicle-row">
+                                <span class="vehicle-icon">⚙️</span>
+                                <span class="vehicle-number">Van 2</span>
+                                <button class="assign-driver-btn clickable-tool" data-tool="assign-driver">Assign Driver</button>
+                            </div>
+                            <div class="vehicle-row">
+                                <span class="vehicle-icon">⚙️</span>
+                                <span class="vehicle-number">Van 3</span>
+                                <button class="assign-driver-btn clickable-tool" data-tool="assign-driver">Assign Driver</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Map Section -->
+                    <div class="mock-section map-section" id="mapSection" style="display: none;">
+                        <div class="map-container">
+                            <div class="map-controls">
+                                <button class="map-btn clickable-tool" data-tool="reset-map">Reset Map</button>
+                                <button class="map-btn clickable-tool" data-tool="map-settings">Map Settings</button>
+                                <button class="map-btn clickable-tool" data-tool="update-timings">Update Route Timings</button>
+                                <label class="map-toggle">
+                                    <input type="checkbox" class="clickable-tool" data-tool="traffic-toggle">
+                                    <span>Traffic Enabled</span>
+                                </label>
+                                <label class="map-toggle">
+                                    <input type="checkbox" class="clickable-tool" data-tool="lock-scroll">
+                                    <span>Lock scroll zoom</span>
+                                </label>
+                            </div>
+                            <div class="map-display" id="mapDisplay">
+                                <!-- Map pins representing actual locations from the interface -->
+                                <div class="map-pin delivery" style="top: 25%; left: 20%;" data-job="28-11" title="Laurie Potts - OL6 7FU">📍</div>
+                                <div class="map-pin delivery" style="top: 35%; left: 60%;" data-job="30-16" title="Miss Dino Saur - OL2 3BP">📍</div>
+                                <div class="map-pin delivery" style="top: 50%; left: 40%;" data-job="27-9" title="Elaine Hines - M40 5GH">📍</div>
+                                <div class="map-pin collection" style="top: 65%; left: 75%;" data-job="26-13" title="Lewis Bailey - OL1 4BY">🔼</div>
+                                <div class="map-pin collection" style="top: 30%; left: 80%;" data-job="30-15" title="Miss Dino Saur - OL2 3BP">🔼</div>
+                                <div class="map-pin collection" style="top: 70%; left: 25%;" data-job="27-10" title="Elaine Hines - M40 5GH">🔼</div>
+                                
+                                <!-- Map overlays -->
+                                <div class="map-numbers">
+                                    <span class="map-number orange" style="top: 15%; right: 15%;">4 ↗</span>
+                                    <span class="map-number green" style="bottom: 15%; left: 15%;">6 ↗</span>
+                                    <span class="map-number green" style="bottom: 25%; right: 25%;">3 ↗</span>
+                                    <span class="map-number red" style="top: 45%; right: 5%;">7 ↘</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Vehicle Section -->
+                    <div class="mock-section vehicles-section" id="vehiclesSection" style="display: none;">
+                        <div class="vehicle-header-bar">
+                            <div class="vehicle-info">
+                                <span class="vehicle-name">🚐 Van 1</span>
+                                <button class="unassign-btn clickable-tool" data-tool="unassign-jobs" title="Unassign all jobs">↻</button>
+                            </div>
+                            <div class="vehicle-stats">
+                                <span class="stat-item">JOBS: 4</span>
+                                <span class="stat-item">DRIVING TIME: 2h 15m</span>
+                                <span class="stat-item">DISTANCE: 28.4 mi</span>
+                                <span class="stat-item">UNITS: 13/30</span>
+                                <span class="stat-item">FUEL COST: £45.20</span>
+                                <span class="stat-item">DRIVER COST: £85.00</span>
+                                <span class="stat-item">COLLECT: £892.60</span>
+                            </div>
+                        </div>
+                        <div class="vehicle-jobs-table">
+                            <div class="vehicle-table-header">
+                                <span class="col-order">#</span>
+                                <span class="col-id">ID</span>
+                                <span class="col-name">NAME</span>
+                                <span class="col-tel">TEL</span>
+                                <span class="col-address">ADDRESS</span>
+                                <span class="col-items">ITEMS</span>
+                                <span class="col-surface">SURFACE</span>
+                                <span class="col-cost">COST</span>
+                                <span class="col-type">TYPE</span>
+                                <span class="col-time">TIME</span>
+                                <span class="col-status">STATUS</span>
+                                <span class="col-balance">BALANCE</span>
+                                <span class="col-actions">ACTIONS</span>
+                            </div>
+                            <div class="vehicle-job-row" data-job="28-11">
+                                <span class="order-num">1*</span>
+                                <span class="job-id">28-11</span>
+                                <span class="job-name">Laurie Potts</span>
+                                <span class="job-tel">07000000000</span>
+                                <span class="job-address">OL6 7FU</span>
+                                <span class="job-items">7</span>
+                                <span class="job-surface">I/H</span>
+                                <span class="job-cost">£0.00</span>
+                                <span class="job-type">🔽</span>
+                                <span class="job-time">10:00 am</span>
+                                <span class="job-status assigned">Assigned*</span>
+                                <span class="job-balance">£309.40</span>
+                                <span class="job-actions">🕐 ℹ️ 💬 🎯 ⚙️</span>
+                            </div>
+                            <div class="vehicle-job-row" data-job="30-16">
+                                <span class="order-num">2*</span>
+                                <span class="job-id">30-16</span>
+                                <span class="job-name">Miss Dino Saur</span>
+                                <span class="job-tel">01706249004</span>
+                                <span class="job-address">OL2 3BP</span>
+                                <span class="job-items">1</span>
+                                <span class="job-surface">O/G</span>
+                                <span class="job-cost">£0.00</span>
+                                <span class="job-type">🔽</span>
+                                <span class="job-time">10:00 am</span>
+                                <span class="job-status assigned">Assigned*</span>
+                                <span class="job-balance">£119.00</span>
+                                <span class="job-actions">🕐 ℹ️ 💬 🎯 ⚙️</span>
+                            </div>
+                            <div class="vehicle-job-row" data-job="27-9">
+                                <span class="order-num">3*</span>
+                                <span class="job-id">27-9</span>
+                                <span class="job-name">Elaine Hines</span>
+                                <span class="job-tel">07000000000</span>
+                                <span class="job-address">M40 5GH</span>
+                                <span class="job-items">4</span>
+                                <span class="job-surface">--</span>
+                                <span class="job-cost">£0.00</span>
+                                <span class="job-type">🔽</span>
+                                <span class="job-time">12:00 pm</span>
+                                <span class="job-status assigned">Assigned*</span>
+                                <span class="job-balance">£189.00</span>
+                                <span class="job-actions">🕐 ℹ️ 💬 🎯 ⚙️</span>
+                            </div>
+                            <div class="vehicle-job-row" data-job="26-13">
+                                <span class="order-num">4*</span>
+                                <span class="job-id">26-13</span>
+                                <span class="job-name">Lewis Bailey</span>
+                                <span class="job-tel">07000000000</span>
+                                <span class="job-address">OL1 4BY</span>
+                                <span class="job-items">1</span>
+                                <span class="job-surface">--</span>
+                                <span class="job-cost">£0.00</span>
+                                <span class="job-type">🔼</span>
+                                <span class="job-time">03:00 pm</span>
+                                <span class="job-status assigned">Assigned*</span>
+                                <span class="job-balance">£0.00</span>
+                                <span class="job-actions">🕐 ℹ️ 💬 🎯 ⚙️</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Drop zone for new jobs -->
+                        <div class="vehicle-drop-zone" id="vehicleDropZone">
+                            <span class="drop-instruction">Drop new jobs here to assign to this vehicle</span>
+                        </div>
+                    </div>
+
+                    <!-- Vehicle Cards Section (for assignment scenario) -->
+                    <div class="mock-section vehicle-cards-section" id="vehicleCardsSection" style="display: none;">
+                        <!-- Unassigned Jobs for Assignment -->
+                        <div class="assignment-unassigned-section">
+                            <div class="assignment-section-header">
+                                <div class="section-title-area">
+                                    <span class="dropdown-arrow">▼</span>
+                                    <span class="section-title">Unassigned Jobs</span>
+                                    <div class="search-icon">🔍</div>
+                                </div>
+                                <div class="section-controls">
+                                    <button class="control-btn">Auto Assign</button>
+                                    <div class="sort-controls">
+                                        <span class="sort-btn">🔼</span>
+                                        <span class="sort-btn">🔽</span>
+                                        <span class="sort-btn">🎯</span>
+                                    </div>
+                                    <span class="balance-info">Today's Balance <span class="balance-amount">£617.40</span></span>
+                                </div>
+                            </div>
+                            <div class="assignment-jobs-table">
+                                <div class="assignment-table-header">
+                                    <span class="col-id">ID</span>
+                                    <span class="col-name">NAME</span>
+                                    <span class="col-tel">TEL</span>
+                                    <span class="col-address">ADDRESS</span>
+                                    <span class="col-items">ITEMS</span>
+                                    <span class="col-surface">SURFACE</span>
+                                    <span class="col-type">TYPE</span>
+                                    <span class="col-time">TIME</span>
+                                    <span class="col-actions">ACTIONS</span>
+                                </div>
+                                <div class="assignment-job-row draggable-item" data-job="30-15" draggable="true">
+                                    <span class="job-id">30-15</span>
+                                    <span class="job-name">Miss Dino Saur</span>
+                                    <span class="job-tel">01706249004</span>
+                                    <span class="job-address">OL2 3BP</span>
+                                    <span class="job-items">1</span>
+                                    <span class="job-surface">O/G</span>
+                                    <span class="job-type">🔼</span>
+                                    <span class="job-time green-time">03:00 pm</span>
+                                    <span class="job-actions">
+                                        <span class="action-icon">🕐</span>
+                                        <span class="action-icon">ℹ️</span>
+                                        <span class="action-icon">💬</span>
+                                        <span class="action-icon">🎯</span>
+                                        <span class="action-icon">⚙️</span>
+                                        <span class="action-icon">➕</span>
+                                    </span>
+                                </div>
+                                <div class="assignment-job-row draggable-item" data-job="27-10" draggable="true">
+                                    <span class="job-id">27-10</span>
+                                    <span class="job-name">Elaine Hines</span>
+                                    <span class="job-tel">07000000000</span>
+                                    <span class="job-address">M40 5GH</span>
+                                    <span class="job-items">4</span>
+                                    <span class="job-surface">--</span>
+                                    <span class="job-type">🔼</span>
+                                    <span class="job-time green-time">05:30 pm</span>
+                                    <span class="job-actions">
+                                        <span class="action-icon">🕐</span>
+                                        <span class="action-icon">ℹ️</span>
+                                        <span class="action-icon">💬</span>
+                                        <span class="action-icon">🎯</span>
+                                        <span class="action-icon">⚙️</span>
+                                        <span class="action-icon">➕</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Vehicle Assignment Rows -->
+                        <div class="vehicle-assignment-area">
+                            <div class="vehicle-assignment-row vehicle-drop-target" data-vehicle="van1">
+                                <span class="vehicle-icon">⚙️</span>
+                                <span class="vehicle-name">Van 1</span>
+                                <span class="driver-info">Driver: Mike Johnson</span>
+                                <div class="vehicle-controls">
+                                    <span class="control-icon">E..</span>
+                                    <span class="control-icon">📋</span>
+                                </div>
+                            </div>
+                            <div class="vehicle-assignment-row vehicle-drop-target" data-vehicle="van2">
+                                <span class="vehicle-icon">⚙️</span>
+                                <span class="vehicle-name">Van 2</span>
+                                <button class="assign-driver-btn">Assign Driver</button>
+                            </div>
+                            <div class="vehicle-assignment-row vehicle-drop-target" data-vehicle="van3">
+                                <span class="vehicle-icon">⚙️</span>
+                                <span class="vehicle-name">Van 3</span>
+                                <button class="assign-driver-btn">Assign Driver</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Drag & Drop Section -->
+                    <div class="mock-section drag-drop-section" id="dragDropSection" style="display: none;">
+                        <div class="drag-instructions">Match tools to their purposes:</div>
+                        <div class="drag-container">
+                            <div class="drag-tools">
+                                <div class="draggable-item" data-tool="search">🔍 Search</div>
+                                <div class="draggable-item" data-tool="assign-all">📋 Assign All</div>
+                                <div class="draggable-item" data-tool="full-screen">📺 Full Screen</div>
+                                <div class="draggable-item" data-tool="balance">💰 Today's Balance</div>
+                            </div>
+                            <div class="drop-targets">
+                                <div class="drop-zone" data-purpose="search">Find Booking ID 84729</div>
+                                <div class="drop-zone" data-purpose="assign-all">Distribute jobs automatically</div>
+                                <div class="drop-zone" data-purpose="full-screen">See more of the job list</div>
+                                <div class="drop-zone" data-purpose="balance">View today's financial total</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Feedback -->
+        <div class="feedback-panel" id="feedbackPanel">
+            <div class="feedback-content" id="feedbackContent">
+                <div class="feedback-message" id="feedbackMessage">
+                    Welcome to your first day! Handle the incoming call by clicking the correct tool.
+                </div>
+                <div class="points-display" id="pointsDisplay"></div>
+            </div>
+        </div>
+
+        <!-- Confidence Mode Modal -->
+        <div class="confidence-modal" id="confidenceModal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">🎤 Explain to Customer</div>
+                <div class="modal-body">
+                    <div class="modal-question" id="modalQuestion"></div>
+                    <textarea class="explanation-input" id="explanationInput" placeholder="Type your explanation..."></textarea>
+                    <button class="submit-explanation" onclick="submitExplanation()">Submit</button>
+                </div>
+                <div class="modal-model-answer" id="modalModelAnswer" style="display: none;">
+                    <h4>Model Answer:</h4>
+                    <p id="modelAnswerText"></p>
+                    <button class="continue-btn" onclick="closeConfidenceModal()">Continue</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- End of Shift Summary -->
+        <div class="shift-summary" id="shiftSummary" style="display: none;">
+            <div class="summary-content">
+                <h2>🏁 Shift Complete</h2>
+                <div class="mastery-scores">
+                    <div class="mastery-item">
+                        <span class="mastery-icon">🧭</span>
+                        <span class="mastery-label">Navigation Mastery:</span>
+                        <span class="mastery-score" id="navMastery">0%</span>
+                    </div>
+                    <div class="mastery-item">
+                        <span class="mastery-icon">📦</span>
+                        <span class="mastery-label">Job Control:</span>
+                        <span class="mastery-score" id="jobMastery">0%</span>
+                    </div>
+                    <div class="mastery-item">
+                        <span class="mastery-icon">🗺️</span>
+                        <span class="mastery-label">Map Intelligence:</span>
+                        <span class="mastery-score" id="mapMastery">0%</span>
+                    </div>
+                    <div class="mastery-item">
+                        <span class="mastery-icon">🚛</span>
+                        <span class="mastery-label">Fleet Logic:</span>
+                        <span class="mastery-score" id="fleetMastery">0%</span>
+                    </div>
+                </div>
+                <div class="badge-award" id="badgeAward">
+                    <div class="badge-icon">🥈</div>
+                    <div class="badge-name">Confident Operator</div>
+                </div>
+                <div class="summary-actions">
+                    <button class="summary-btn" onclick="replayWeakAreas()">👉 Replay Weak Areas</button>
+                    <button class="summary-btn" onclick="startSpeedRound()">👉 Start Speed Round</button>
+                    <a href="xmas-games-index.html" class="summary-btn">👉 Finish Training</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="route-planner.js"></script>
+</body>
+</html>
