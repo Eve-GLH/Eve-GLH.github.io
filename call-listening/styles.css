@@ -1,1 +1,74 @@
-﻿@import "styles.less";
+body {
+  background-color: #252121;
+  color: #cfb8b5;
+}
+.header,
+.footer {
+  background-color: #7a6c6b;
+  padding: 60px 0 40px;
+  color: #faddda;
+}
+h1 {
+  text-shadow: 4px 4px 0px #252121;
+}
+section {
+  padding: 30px 0;
+}
+.questions__inner {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.call-details .answer-section {
+  width: 45%;
+  margin: 10px 20px;
+  display: flex;
+  flex-direction: column;
+}
+hr {
+  border-top: 1px solid #7a6c6b;
+}
+.subtotal__details {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.details__section {
+  width: 40%;
+  margin: 10px 30px;
+}
+.notes textarea {
+  width: 100%;
+  height: 200px;
+}
+.scoring-section__inner {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.scoring-section__inner section {
+  width: 40%;
+  margin: 10px 30px;
+}
+input,
+select,
+textarea {
+  border: 1px solid #7a6c6b;
+  background: #504746;
+  color: #faddda;
+  height: 50px;
+  box-shadow: 4px 4px 0 rgba(80, 71, 70, 0.5);
+}
+input::placeholder,
+select::placeholder,
+textarea::placeholder {
+  color: #cfb8b5;
+}
+button {
+  background: #7a6c6b;
+  color: #faddda;
+  border: none;
+  border-radius: 50px;
+  padding: 20px 30px;
+  font-size: 18px;
+}
