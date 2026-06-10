@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="eng">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <style>
+            body {
+                background: var(--bg, #f8f9fa);
+                color: var(--fg, #222);
+                transition: background 0.3s, color 0.3s;
+            }
+            .main-content {
+                margin: 60px auto;
+                max-width: 600px;
+                background: var(--card-bg, #fff);
+                border-radius: 18px;
+                box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+                padding: 40px 32px 32px 32px;
+            }
+            .toggle-btn {
+                position: absolute;
+                top: 24px;
+                right: 32px;
+                background: var(--card-bg, #fff);
+                color: var(--fg, #222);
+                border: 1px solid #ccc;
+                border-radius: 20px;
+                padding: 8px 18px;
+                font-size: 1em;
+                cursor: pointer;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+                transition: background 0.3s, color 0.3s;
+                z-index: 10;
+            }
+            .back-btn {
+                position: absolute;
+                top: 24px;
+                left: 32px;
+                background: var(--card-bg, #fff);
+                color: var(--fg, #222);
+                border: 1px solid #ccc;
+                border-radius: 20px;
+                padding: 8px 18px;
+                font-size: 1em;
+                cursor: pointer;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+                transition: background 0.3s, color 0.3s;
+                z-index: 10;
+                text-decoration: none !important;
+            }
+            .back-btn:hover, .back-btn:focus {
+                text-decoration: none !important;
+                color: var(--fg, #222);
+                box-shadow: 0 4px 12px rgba(0,0,0,0.10);
+            }
+            @media (max-width: 700px) {
+                .main-content {
+                    padding: 18px 4vw;
+                }
+                .toggle-btn {
+                    right: 10px;
+                    top: 10px;
+                }
+                .back-btn {
+                    left: 10px;
+                    top: 10px;
+                }
+            }
+            body.dark {
+                --bg: #181a1b;
+                --fg: #f1f1f1;
+                --card-bg: #23272b;
+            }
+            body.dark .toggle-btn, body.dark .back-btn {
+                background: var(--card-bg, #23272b);
+                color: var(--fg, #f1f1f1);
+                border-color: #555;
+            }
+            .checklist-section {
+                margin-bottom: 28px;
+            }
+            .checklist-section h2 {
+                font-size: 1.1em;
+                font-weight: 700;
+                margin-bottom: 12px;
+                color: #b8005c;
+                letter-spacing: 0.02em;
+            }
+            body.dark .checklist-section h2 {
+                color: #ffd1e3;
+            }
+            .checklist-item {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 10px 14px;
+                border-radius: 10px;
+                margin-bottom: 8px;
+                background: var(--item-bg, #fdf0f6);
+                transition: background 0.2s;
+                cursor: pointer;
+                user-select: none;
+            }
+            .checklist-item:hover {
+                background: var(--item-hover, #fde0ef);
+            }
+            .checklist-item input[type="checkbox"] {
+                width: 20px;
+                height: 20px;
+                accent-color: #b8005c;
+                cursor: pointer;
+                flex-shrink: 0;
+            }
+            .checklist-item label {
+                margin: 0;
+                font-size: 1em;
+                cursor: pointer;
+                flex: 1;
+            }
+            .checklist-item.checked {
+                background: linear-gradient(90deg, #ffd1e3 0%, #ffe3f1 100%);
+            }
+            .checklist-item.checked label {
+                text-decoration: line-through;
+                color: #b8005c;
+            }
+            .output-section {
+                margin-top: 32px;
+                border-top: 2px solid #ffd1e3;
+                padding-top: 20px;
+            }
+            .output-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 12px;
+            }
+            .output-section h2 {
+                font-size: 1.1em;
+                font-weight: 700;
+                margin-bottom: 0;
+                color: #b8005c;
+                letter-spacing: 0.02em;
+            }
+            .copy-btn {
+                background: linear-gradient(90deg, #ffd1e3 0%, #ffe3f1 100%);
+                color: #b8005c;
+                border: none;
+                border-radius: 16px;
+                padding: 5px 16px;
+                font-size: 0.9em;
+                font-weight: 600;
+                cursor: pointer;
+                transition: background 0.2s, transform 0.1s;
+            }
+            .copy-btn:hover {
+                background: linear-gradient(90deg, #ffe3f1 0%, #ffd1e3 100%);
+                transform: translateY(-1px);
+            }
+            .copy-btn.copied {
+                background: #d4edda;
+                color: #155724;
+            }
+            .output-textarea {
+                width: 100%;
+                min-height: 120px;
+                font-family: 'Courier New', Courier, monospace;
+                font-size: 0.88em;
+                line-height: 1.6;
+                background: var(--item-bg, #fdf0f6);
+                color: var(--fg, #222);
+                border: 1px solid #e0b8ce;
+                border-radius: 10px;
+                padding: 12px 14px;
+                resize: vertical;
+                outline: none;
+                transition: background 0.3s, color 0.3s;
+                display: none;
+            }
+            .output-textarea:focus {
+                border-color: #b8005c;
+            }
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(4px); }
+                to   { opacity: 1; transform: translateY(0); }
+            }
+            .output-empty {
+                color: #aaa;
+                font-style: italic;
+                font-size: 0.95em;
+                margin: 0;
+            }
+            body.dark {
+                --item-bg: #2c2030;
+                --item-hover: #3a2540;
+            }
+            body.dark .checklist-item.checked {
+                background: linear-gradient(90deg, #4b223a 0%, #5a2d47 100%);
+            }
+            body.dark .checklist-item.checked label {
+                color: #ffd1e3;
+            }
+            body.dark .output-section {
+                border-top-color: #4b223a;
+            }
+            body.dark .output-section h2 {
+                color: #ffd1e3;
+            }
+            body.dark .output-textarea {
+                background: var(--item-bg, #2c2030);
+                border-color: #5a2d47;
+            }
+            body.dark .copy-btn {
+                background: linear-gradient(90deg, #4b223a 0%, #5a2d47 100%);
+                color: #ffd1e3;
+            }
+            body.dark .copy-btn:hover {
+                background: linear-gradient(90deg, #5a2d47 0%, #4b223a 100%);
+            }
+        </style>
+        <title>Pre-Live Checklist</title>
+    </head>
+    <body>
+        <a class="back-btn" href="/checklists/checklists-index.html">&#8592; Back</a>
+        <button class="toggle-btn" id="toggleMode" aria-label="Toggle light/dark mode">🌙 Dark Mode</button>
+        <div class="outer-wrapper">
+            <div class="container">
+                <div class="main-content">
+                    <h1 class="text-center mb-4">Pre-Live Checklist</h1>
+
+                    <!-- Section: Header -->
+                    <div class="checklist-section">
+                        <h2>Header</h2>
+                        <div class="checklist-item" onclick="toggleItem(this)">
+                            <input type="checkbox" id="header-contact" data-label="Phone and email correct">
+                            <label for="header-contact">Are the phone number and email address correct?</label>
+                        </div>
+                        <div class="checklist-item" onclick="toggleItem(this)">
+                            <input type="checkbox" id="header-appearance" data-label="Header appearance checked">
+                            <label for="header-appearance">Does the header look neat and properly sized?</label>
+                        </div>
+                    </div>
+
+                    <!-- Section: Categories -->
+                    <div class="checklist-section">
+                        <h2>Categories</h2>
+                        <div class="checklist-item" onclick="toggleItem(this)">
+                            <input type="checkbox" id="categories-description" data-label="Category descriptions present">
+                            <label for="categories-description">Does each category have a description?</label>
+                        </div>
+                        <div class="checklist-item" onclick="toggleItem(this)">
+                            <input type="checkbox" id="categories-keywords" data-label="Keywords in descriptions">
+                            <label for="categories-keywords">Does each category description contain relevant keywords?</label>
+                        </div>
+                    </div>
+
+                    <!-- Section: Products -->
+                    <div class="checklist-section">
+                        <h2>Products</h2>
+                        <div class="checklist-item" onclick="toggleItem(this)">
+                            <input type="checkbox" id="products-description" data-label="Product descriptions present">
+                            <label for="products-description">Does each product have a description?</label>
+                        </div>
+                        <div class="checklist-item" onclick="toggleItem(this)">
+                            <input type="checkbox" id="products-keywords" data-label="Keywords in descriptions">
+                            <label for="products-keywords">Does each product description contain relevant keywords?</label>
+                        </div>
+                    </div>
+
+                    <!-- Section: Links -->
+                    <div class="checklist-section">
+                        <h2>Links</h2>
+                        <div class="checklist-item" onclick="toggleItem(this)">
+                            <input type="checkbox" id="links-social" data-label="Social media links verified">
+                            <label for="links-social">Do all social media links go to the correct pages?</label>
+                        </div>
+                        <div class="checklist-item" onclick="toggleItem(this)">
+                            <input type="checkbox" id="links-featured-categories" data-label="Featured categories linked correctly">
+                            <label for="links-featured-categories">Do Featured Categories on the homepage link to the correct categories?</label>
+                        </div>
+                        <div class="checklist-item" onclick="toggleItem(this)">
+                            <input type="checkbox" id="links-navigation" data-label="Navigation menu organized">
+                            <label for="links-navigation">Is the navigation menu tidy and in a sensible order?</label>
+                        </div>
+                        <div class="checklist-item" onclick="toggleItem(this)">
+                            <input type="checkbox" id="links-footer" data-label="Footer links working">
+                            <label for="links-footer">Do all footer links work?</label>
+                        </div>
+                    </div>
+
+                    <!-- Section: Testimonials -->
+                    <div class="checklist-section">
+                        <h2>Testimonials</h2>
+                        <div class="checklist-item" onclick="toggleItem(this)">
+                            <input type="checkbox" id="testimonials-present" data-label="Testimonials present">
+                            <label for="testimonials-present">Are testimonials present?</label>
+                        </div>
+                        <div class="checklist-item" onclick="toggleItem(this)">
+                            <input type="checkbox" id="testimonials-placeholder" data-label="No placeholder text">
+                            <label for="testimonials-placeholder">Is there any placeholder or dummy text that needs removing?</label>
+                        </div>
+                    </div>
+
+                    <!-- Section: Contact Page -->
+                    <div class="checklist-section">
+                        <h2>Contact Page</h2>
+                        <div class="checklist-item" onclick="toggleItem(this)">
+                            <input type="checkbox" id="contact-info" data-label="Contact information verified">
+                            <label for="contact-info">Is all contact information correct?</label>
+                        </div>
+                    </div>
+
+                    <!-- Section: Home Page -->
+                    <div class="checklist-section">
+                        <h2>Home Page</h2>
+                        <div class="checklist-item" onclick="toggleItem(this)">
+                            <input type="checkbox" id="home-relevance" data-label="Content relevance confirmed">
+                            <label for="home-relevance">Is all text and imagery relevant to the customer?</label>
+                        </div>
+                        <div class="checklist-item" onclick="toggleItem(this)">
+                            <input type="checkbox" id="home-placeholder" data-label="No placeholder content">
+                            <label for="home-placeholder">Is there any dummy or placeholder content that needs removing?</label>
+                        </div>
+                        <div class="checklist-item" onclick="toggleItem(this)">
+                            <input type="checkbox" id="home-keywords" data-label="Keywords present">
+                            <label for="home-keywords">Does the homepage contain relevant keywords?</label>
+                        </div>
+                    </div>
+
+                    <!-- Section: Banner Images -->
+                    <div class="checklist-section">
+                        <h2>Banner Images</h2>
+                        <div class="checklist-item" onclick="toggleItem(this)">
+                            <input type="checkbox" id="banner-display" data-label="Images displaying correctly">
+                            <label for="banner-display">Are the banner images displaying correctly?</label>
+                        </div>
+                        <div class="checklist-item" onclick="toggleItem(this)">
+                            <input type="checkbox" id="banner-defaults" data-label="Default images replaced">
+                            <label for="banner-defaults">Have any default images been removed if the customer added their own?</label>
+                        </div>
+                    </div>
+
+                    <!-- Section: Final Check -->
+                    <div class="checklist-section">
+                        <h2>Final Check</h2>
+                        <div class="checklist-item" onclick="toggleItem(this)">
+                            <input type="checkbox" id="final-clickthrough" data-label="Site fully tested">
+                            <label for="final-clickthrough">Click through every page on the site.</label>
+                        </div>
+                        <div class="checklist-item" onclick="toggleItem(this)">
+                            <input type="checkbox" id="final-verification" data-label="All functionality verified">
+                            <label for="final-verification">Make sure everything works correctly and nothing appears broken or out of place.</label>
+                        </div>
+                    </div>
+
+                    <!-- Output -->
+                    <div class="output-section">
+                        <div class="output-header">
+                            <h2>Output</h2>
+                            <button class="copy-btn" id="copyBtn" onclick="copyOutput()" style="display:none">Copy</button>
+                        </div>
+                        <p class="output-empty" id="outputEmpty">No items confirmed yet.</p>
+                        <textarea class="output-textarea" id="outputTextarea" readonly spellcheck="false"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            const btn = document.getElementById('toggleMode');
+            function setMode(dark) {
+                document.body.classList.toggle('dark', dark);
+                btn.textContent = dark ? '☀️ Light Mode' : '🌙 Dark Mode';
+                localStorage.setItem('darkMode', dark ? '1' : '0');
+            }
+            const darkPref = localStorage.getItem('darkMode') === '1';
+            setMode(darkPref);
+            btn.onclick = () => setMode(!document.body.classList.contains('dark'));
+
+            function toggleItem(row) {
+                // Don't double-fire when clicking directly on the checkbox
+                const cb = row.querySelector('input[type="checkbox"]');
+                if (event.target !== cb) cb.checked = !cb.checked;
+                row.classList.toggle('checked', cb.checked);
+                updateOutput();
+            }
+
+            function updateOutput() {
+                const empty = document.getElementById('outputEmpty');
+                const textarea = document.getElementById('outputTextarea');
+                const copyBtn = document.getElementById('copyBtn');
+
+                // Group checked items by their parent section heading
+                const sections = document.querySelectorAll('.checklist-section');
+                const parts = [];
+
+                sections.forEach(section => {
+                    const heading = section.querySelector('h2').textContent.trim();
+                    const checkedInSection = Array.from(
+                        section.querySelectorAll('input[type="checkbox"]:checked')
+                    );
+                    if (checkedInSection.length > 0) {
+                        let block = `<p><strong>${heading}</strong></p>\n<ul>\n`;
+                        checkedInSection.forEach(cb => {
+                            block += `  <li>${cb.dataset.label}</li>\n`;
+                        });
+                        block += `</ul>`;
+                        parts.push(block);
+                    }
+                });
+
+                if (parts.length === 0) {
+                    empty.style.display = '';
+                    textarea.style.display = 'none';
+                    copyBtn.style.display = 'none';
+                } else {
+                    empty.style.display = 'none';
+                    textarea.style.display = 'block';
+                    copyBtn.style.display = 'inline-block';
+                    textarea.value = parts.join('\n\n');
+                }
+            }
+
+            function copyOutput() {
+                const textarea = document.getElementById('outputTextarea');
+                const copyBtn = document.getElementById('copyBtn');
+                navigator.clipboard.writeText(textarea.value).then(() => {
+                    copyBtn.textContent = 'Copied!';
+                    copyBtn.classList.add('copied');
+                    setTimeout(() => {
+                        copyBtn.textContent = 'Copy';
+                        copyBtn.classList.remove('copied');
+                    }, 2000);
+                });
+            }
+        </script>
+    </body>
+</html>
