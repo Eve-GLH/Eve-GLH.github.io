@@ -11,8 +11,18 @@
         <div id="ToDoApp">
             <div class="container">
                 <form class="to-do-list" v-on:reset="resetFields" >
-                    <div class="title">
-                        <h2>{{ title }}</h2>
+                    <div class="title-bar">
+                        <h2 ID="Title" class="title">{{ title }}</h2>
+                        <div class="title-edit" ID="TitleEdit">
+                            <label for="TitleInput">Title: </label>
+                            <input class="title-input" ID="TitleInput" type="text" placeholder="Title" v-model="inputTitle" />
+                            <button class="btn btn-success" type="button" @click="submitTitle">
+                                Checkmark image
+                            </button>
+                        </div>
+                        <button class="btn btn-secondary" type="button" @click="showEdit">
+                            <img src="images/pencil.svg" alt="edit" />
+                        </button>
                     </div>
                     <div class="list-body">
                         
