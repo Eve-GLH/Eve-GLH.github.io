@@ -1,7 +1,47 @@
+body {
+  background: #333;
+  color: #fff;
+}
 .title {
   text-align: center;
   padding: 30px 0;
 }
 .title-edit {
   display: none;
+}
+.title-bar {
+  position: relative;
+}
+.title-input {
+  height: 40px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid #FFF;
+  border-radius: 0;
+  color: #FFF;
+  padding-left: 10px;
+}
+.title-input-label {
+  display: none;
+}
+.title-input::placeholder {
+  color: #FFF;
+  opacity: 1;
+}
+.title-input:focus-visible {
+  outline: #FFF solid 1px;
+}
+.edit-button {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #919191;
+}
+.btn-link {
+  color: #FFF;
+}
+.btn-link:hover,
+.btn-link:focus {
+  color: #FFF;
 }

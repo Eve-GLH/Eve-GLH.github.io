@@ -2,7 +2,12 @@ const ToDoApp = new Vue({
     el: '#ToDoApp',
     data: {
         title: 'My To Do List',
-        inputTitle: ''
+        inputTitle: '',
+        toDoBody: ([{
+            text: '',
+            done: false
+        }]),
+        NewToDo: '',
     },
     computed: {
 
@@ -12,18 +17,33 @@ const ToDoApp = new Vue({
             this.title = 'My To Do List'
         },
         showEdit: function() {
-            let titleInput = document.getElementById("TitleEdit");
-            if (titleInput.style.display === "none") {
-                titleInput.style.display = "block";
+            let writeTitle = document.getElementById("TitleEdit");
+            if (writeTitle.style.display === "none") {
+                writeTitle.style.display = "block";
             } else {
-                titleInput.style.display = "none";
+                writeTitle.style.display = "none";
             }
         },
         submitTitle: function() {
+            let writeTitle = document.getElementById("TitleEdit");
             if (this.inputTitle.length < 3) {
                 this.title = "My To Do List"
             } else {
                 this.title = this.inputTitle;
+            }
+            writeTitle.style.display = "none";
+        },
+        SubmitNew: function() {
+            let NewToDoText = this.NewToDo;
+            console.log((NewToDoText.length));
+            if (NewToDoText.length > 0) {
+                this.toDoBody.text = NewToDoText;
+                console.log('added item: ' + NewToDoText);
+                this.toDoBody.done = true;
+                console.log('done: ' + this.toDoBody.done);
+                
+            } else {
+                console.log('No Text Detected');
             }
         }
     }
