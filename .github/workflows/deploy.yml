@@ -15,15 +15,15 @@ concurrency:
   group: pages
   cancel-in-progress: true
 
-env:
-  SITE_DIR: ${{ runner.temp }}/pages-site
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -42,20 +42,23 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p "$SITE_DIR"
+          rm -rf site
+          mkdir -p site
           rsync -a \
             --exclude '.git' \
             --exclude '.github' \
             --exclude 'node_modules' \
+            --exclude 'site' \
             --exclude 'vue-practice/vue-to-do-app/node_modules' \
-            ./ "$SITE_DIR"/
-          mkdir -p "$SITE_DIR"/vue-practice/vue-to-do-app
-          cp -a vue-practice/vue-to-do-app/dist/. "$SITE_DIR"/vue-practice/vue-to-do-app/
+            ./ site/
+          mkdir -p site/vue-practice/vue-to-do-app
+          cp -a vue-practice/vue-to-do-app/dist/. site/vue-practice/vue-to-do-app/
+          touch site/.nojekyll
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ${{ env.SITE_DIR }}
+          path: site
 
   deploy:
     environment:
