@@ -1,0 +1,69 @@
+name: Deploy site to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+env:
+  SITE_DIR: ${{ runner.temp }}/pages-site
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Vue app dependencies
+        working-directory: vue-practice/vue-to-do-app
+        run: npm ci
+
+      - name: Build Vue app
+        working-directory: vue-practice/vue-to-do-app
+        run: npm run build
+
+      - name: Prepare Pages artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$SITE_DIR"
+          rsync -a \
+            --exclude '.git' \
+            --exclude '.github' \
+            --exclude 'node_modules' \
+            --exclude 'vue-practice/vue-to-do-app/node_modules' \
+            ./ "$SITE_DIR"/
+          mkdir -p "$SITE_DIR"/vue-practice/vue-to-do-app
+          cp -a vue-practice/vue-to-do-app/dist/. "$SITE_DIR"/vue-practice/vue-to-do-app/
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ env.SITE_DIR }}
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
