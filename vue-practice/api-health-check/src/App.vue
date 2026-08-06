@@ -6,19 +6,28 @@ export default {
     return {
       info: null,
       error: null,
-      versionInfo: null
+      versionInfo: null,
+      lastChecked: null
+    }
+  },
+  methods: {
+    checkApi() {
+      axios.get('https://apit.web1.bookingonline.co.uk/api/imagemanager/info/version')
+        .then((response) => {
+          this.info = response.data
+          this.versionInfo = response.data.Data
+        })
+        .catch((err) => {
+          this.error = err.message
+        });
+      this.lastChecked = Date(Date.now())
     }
   },
   mounted() {
-    axios.get('https://apit.web1.bookingonline.co.uk/api/imagemanager/info/version')
-    .then((response) => {
-      console.log(response.data.Success)
-      this.info = response.data
-      this.versionInfo = response.data.Data
-    })
-    .catch((err) => {
-      this.error = err.message
-    })
+    this.checkApi()
+    setInterval(() => {
+      this.checkApi()
+    }, 30000)
   }
 }
 </script>
@@ -35,10 +44,18 @@ export default {
         <h2 v-if="info">
           {{ versionInfo.appName }} is active:
           {{ info.Success }}
+          <div class="indicator"
+            :class="{
+              online: info.Success === true,
+              offline: info.Success === false
+            }"
+            >
+          </div>
         </h2>
         <p v-if="info">{{ versionInfo.appName }} is on version {{ versionInfo.version }}</p>
+        <p v-if="info">Last Checked At: {{ this.lastChecked }}</p>
         <p v-else-if="error">Request failed: {{ error }}</p>
-        <p v-else>Loading...</p>
+        <div v-else>Loading...</div>
       </div>
     </div>
   </section>
@@ -47,5 +64,17 @@ export default {
 <style scoped>
 .header, section {
   padding: 30px 0;
+}
+.indicator {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: orange;
+}
+.online {
+  background-color: green;
+}
+.offline {
+  background-color: red;
 }
 </style>
