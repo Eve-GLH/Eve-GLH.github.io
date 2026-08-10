@@ -1,0 +1,297 @@
+@xs: (max-width: 575px);
+@sm: (min-width: 576px);
+@md: (min-width: 768px);
+@lg: (min-width: 992px);
+
+@white: #FFF;
+@black: #111;
+@gold: #C4A75D;
+@grey: #E6E6E6;
+
+
+.Cormorant {
+  font-family: "Cormorant Garamond", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.OpenSans {
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
+h1, h2, h3 {
+    .Cormorant;
+}
+
+header {
+    border-bottom: 1px solid @grey;
+    position: sticky;
+    top: 0;
+
+    .navbar {
+        padding: 1rem 0;
+        .Cormorant;
+        font-size: 1.3rem;
+        font-weight: 600;
+
+        &__logo {
+            img {
+                max-width: 150px;
+            }
+        }
+
+        &__links {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+
+            li {
+                position: relative;
+
+                &:not(:last-child) {
+                    margin-right: 2rem;
+                }
+
+                a {
+                    text-decoration: none;
+                    color: @white;
+                    padding: 0.5rem 0;
+                    transition: color 0.3s;
+
+                    &:hover {
+                        color: @gold;
+                    }
+                }
+
+                .dropdown-menu {
+                    display: none;
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    background-color: @white;
+                    border: 1px solid @grey;
+                    z-index: 1000;
+
+                    a {
+                        display: block;
+                        padding: 0.5rem 1rem;
+                        white-space: nowrap;
+
+                        &:hover {
+                            background-color: @grey;
+                        }
+                    }
+                }
+
+                &:hover {
+                    .dropdown-menu {
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.hero {
+    background-image: linear-gradient(rgba(30,30,30,0.5), rgba(30,30,30,0.99)), url("luxury-jewellery-display.jpg");
+    background-size: cover;
+    aspect-ratio: 16 / 9;
+    position: relative;
+    &__content {
+        width: 100%;
+        position: absolute;
+        left: 0;
+        right: 0;
+        text-align: center;
+        top: 45%;
+        .Cormorant;
+
+        h1 {
+            font-size: 3.5rem;
+            color: @white;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.5rem;
+            color: @white;
+        }
+    }
+}
+
+.services {
+    background: @black;
+    padding: 60px 0;
+
+    &__text {
+        text-align: center;
+        margin-bottom: 30px;
+        color: @grey;
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: @gold;
+        }
+
+        p {
+            font-size: 1.25rem;
+        }
+    }
+
+    &__grid {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        .service-card {
+            background: @white;
+            border: 1px solid @grey;
+            padding: 1rem;
+            text-align: center;
+            width: calc(33.333% - 1rem);
+            margin-bottom: 1rem;
+
+            img {
+                max-width: 100%;
+                border-bottom: 1px solid @grey;
+                margin-bottom: 1rem;
+            }
+
+            h3 {
+                font-size: 1.5rem;
+                margin-bottom: 0.5rem;
+            }
+
+            p {
+                font-size: 1.25rem;
+                color: @gold;
+            }
+        }
+    }
+}
+
+.products {
+    background-color: @grey;
+    padding: 60px 0;
+    text-align: center;
+    h2 {
+        font-weight: 700;
+        font-size: 2.5rem;
+    }
+    &__grid {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-top: 30px;
+
+        .product-card {
+            background: @white;
+            border: 1px solid @grey;
+            padding: 1rem;
+            text-align: center;
+            width: calc(33.333% - 1rem);
+            margin-bottom: 1rem;
+
+            img {
+                max-width: 100%;
+                border-bottom: 1px solid @grey;
+                margin-bottom: 1rem;
+            }
+
+            h3 {
+                font-size: 1.5rem;
+                margin-bottom: 0.5rem;
+            }
+
+            p {
+                font-size: 1.25rem;
+                color: @gold;
+            }
+        }
+    }
+}
+
+.about {
+    padding: 60px 0;
+    text-align: center;
+}
+
+.footer {
+    background-color: @gold;
+
+    &__top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 30px 0;
+    }
+    
+    &__logo {
+        width: 100%;
+        @media @md {
+            max-width: 25%;
+        }
+        img {
+            max-width: 250px;
+        }
+    }
+
+    &__col {
+        flex: 1;
+        margin-right: 2rem;
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+        @media @md {
+            max-width: 24%;
+        }
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        h3 {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            .Cormorant;
+            color: @grey;
+            font-weight: 700;
+        }
+
+        a {
+            text-decoration: none;
+            color: @white;
+            padding: 0.5rem 0;
+            transition: color 0.3s;
+
+            &:hover {
+                color: darken(@white, 10%);
+            }
+        }
+    }
+
+    &__bottom {
+        text-align: center;
+        padding: 1rem 0;
+        background: @black;
+
+        a {
+            text-decoration: none;
+            color: @white;
+            transition: color 0.3s;
+
+            &:hover {
+                color: @gold;
+            }
+        }
+    }
+}
