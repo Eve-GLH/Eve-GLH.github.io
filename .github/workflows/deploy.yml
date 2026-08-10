@@ -38,6 +38,14 @@ jobs:
         working-directory: vue-practice/vue-to-do-app
         run: npm run build
 
+      - name: Install API user info dependencies
+        working-directory: vue-practice/api-user-info
+        run: npm ci
+
+      - name: Build API user info app
+        working-directory: vue-practice/api-user-info
+        run: npm run build
+
       - name: Prepare Pages artifact
         shell: bash
         run: |
@@ -53,6 +61,8 @@ jobs:
             ./ site/
           mkdir -p site/vue-practice/vue-to-do-app
           cp -a vue-practice/vue-to-do-app/dist/. site/vue-practice/vue-to-do-app/
+          mkdir -p site/vue-practice/api-user-info
+          cp -a vue-practice/api-user-info/dist/. site/vue-practice/api-user-info/
           touch site/.nojekyll
 
       - name: Upload Pages artifact
