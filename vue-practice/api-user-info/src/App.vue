@@ -6,7 +6,8 @@
         userId: 1,
         userInfo: null,
         error: null,
-        username: ''
+        username: '',
+        noUsername: 'Please enter your username'
       }
     },
     methods: {
@@ -26,7 +27,21 @@
             username: this.username
           }
         })
-        console.log(this.response[this.userId].name)
+        .then((response) => {
+          if (response.data.length > 0) {
+            console.log(response.data[0].id)
+            this.userId = response.data[0].id
+            this.userInfo = response.data[0]
+            this.noUsername = ''
+          } else {
+            console.log('No user found by that username')
+            this.noUsername = 'No User Found'
+            this.userInfo = null
+          }
+        })
+        .catch((err) => {
+          this.error = err.message
+        })
       }
     },
     mounted() {
@@ -40,7 +55,7 @@
       <div class="user-change section-inner">
         <label>
           User ID:
-          <input v-model="this.userId" type="number">
+          <input v-model="userId" type="number">
         </label>
         <button @click="getUser" class="btn btn-success">Enter User ID</button>
       </div>
@@ -48,7 +63,7 @@
       <div class="section-inner search-user">
         <label>
           Search Username:
-          <input type="text" v-model="this.username">
+          <input type="text" v-model="username">
         </label>
         <button @click="searchUsername" class="btn btn-primary">Search Username</button>
       </div>
@@ -62,6 +77,10 @@
           Email:
           {{ userInfo.email }}
         </div>
+      </div>
+      
+      <div class="no-user" v-if="noUsername">
+        {{ this.noUsername }}
       </div>
     </div>
   </section>
