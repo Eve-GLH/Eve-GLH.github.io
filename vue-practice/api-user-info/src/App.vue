@@ -10,7 +10,9 @@
         noUsername: 'Please enter your username',
         newUserName: '',
         newUserEmail: '',
-        createdUser: null
+        createdUser: null,
+        updatedEmail: '',
+        deletedMessage: ''
       }
     },
     methods: {
@@ -54,6 +56,34 @@
         .then((response) => {
           console.log(response.data)
           this.createdUser = response.data
+        })
+        .catch((err) => {
+          this.error = err.message
+        })
+      },
+      updateEmail() {
+        axios.patch(`https://jsonplaceholder.typicode.com/users/${this.userId}`, {
+          email: this.updatedEmail
+        })
+        .then((response) => {
+          console.log(response.data.email)
+          this.userInfo = response.data
+        })
+        .catch((err) => {
+          this.error = err.message
+        })
+      },
+      deleteUser() {
+        axios.delete(`https://jsonplaceholder.typicode.com/users/${this.userId}`)
+        .then((response) => {
+          this.userInfo = response.data
+          if (this.userInfo) {
+            this.deletedMessage = `User no longer found`
+            console.log(this.deletedMessage)
+          } else {
+            this.deletedMessage = `Deletion not successful. User ${this.username} still exists`
+          }
+          console.log(userInfo)
         })
         .catch((err) => {
           this.error = err.message
@@ -140,6 +170,25 @@
             </div>
           </div>
         </div>
+        <div class="section-inner">
+          <label>
+            Update Email:
+            <input type="text" v-model="updatedEmail">
+          </label>
+          <button @click="updateEmail" class="btn btn-info">Update Email</button>
+          <div v-if="userInfo" class="updated-email-section">
+            Email address for {{ userInfo.name }} has been updated to {{ userInfo.email }}
+          </div>
+        </div>
+        <div class="section-inner">
+          Delete User:
+          <button @click="deleteUser" class="btn btn-danger">Delete User</button>
+          <div class="user-delete-section">
+            <div class="deleted-message">
+              {{ deletedMessage }}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -172,5 +221,8 @@ h1 {
 .form-section input {
   margin: 10px 0;
 }
-
+.user-delete-section {
+  display: flex;
+  flex-direction: column;
+}
 </style>
